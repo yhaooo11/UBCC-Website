@@ -27,14 +27,31 @@ export default function FAQ() {
   return (
     <section className="relative w-full bg-[#77A5B5] py-16 px-8 md:px-16">
       {/* FLASHED! Star Badge */}
-      <div className="absolute bottom-8 left-8 z-10 transform -rotate-12">
-        <div className="bg-[#E4B834] rounded-full px-6 py-4 shadow-lg">
-          <p className="text-white font-bold text-lg uppercase font-sans">FLASHED!</p>
+      <div className="absolute bottom-10 left-8 z-10 transform -rotate-12">
+        <div className="relative w-56 h-56 md:w-60 md:h-60">
+          <svg viewBox="0 0 100 100" className="w-full h-full filter drop-shadow-lg">
+            <polygon
+              points="50,5 61,35 95,35 67,55 78,85 50,65 22,85 33,55 5,35 39,35"
+              fill="#FFCE3C"
+              stroke="black"
+              strokeWidth="1"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <p
+            className="absolute inset-0 flex items-center justify-center text-[#E1DFC6] font-bold text-sm md:text-lg uppercase font-sans"
+            style={{
+              textShadow:
+                '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+            }}
+          >
+            FLASHED!
+          </p>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-[#E4B834] font-sans mb-12 text-center underline decoration-4 underline-offset-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-[#FFCE3C] font-sans mb-12 text-center underline decoration-4 underline-offset-4">
           Frequently Asked Questions
         </h2>
         
@@ -46,10 +63,10 @@ export default function FAQ() {
                   onClick={() => toggleFAQ(index)}
                   className="w-full text-left flex items-center justify-between gap-4 group"
                 >
-                  <h3 className="text-[#E4B834] font-sans text-xl font-semibold">
+                  <h3 className="text-[#FFCE3C] font-sans text-xl font-semibold">
                     {faq.question}
                   </h3>
-                  <span className={`text-[#E4B834] text-2xl transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''}`}>
+                  <span className={`text-[#FFCE3C] text-2xl transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''}`}>
                     ▼
                   </span>
                 </button>

@@ -8,7 +8,6 @@ export default function HeroSection() {
           backgroundImage: "url('/hero.png')",
         }}
       >
-        <div className="absolute inset-0 bg-black/20"></div>
       </div>
       
       {/* Navigation */}
@@ -25,7 +24,7 @@ export default function HeroSection() {
           <span className="text-xl text-[#E4B834] opacity-0 group-hover:opacity-100 transition-opacity">★</span>
           <span className="font-sans font-bold">Team</span>
         </a>
-        <a href="#instagram" className="flex items-center gap-2 group">
+        <a href="https://www.instagram.com/ubcclimbingclub/" className="flex items-center gap-2 group">
           <span className="text-xl text-[#E4B834] opacity-0 group-hover:opacity-100 transition-opacity">★</span>
           <span className="font-sans font-bold">Instagram</span>
         </a>

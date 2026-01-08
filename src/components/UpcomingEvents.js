@@ -7,12 +7,12 @@ export default function UpcomingEvents() {
   ];
 
   return (
-    <section id="events" className="w-full bg-[#E1DFC7] py-16 px-8 md:px-16">
-      <h2 className="text-4xl md:text-5xl font-bold text-gray-800 font-mono mb-12 text-center">
+    <section id="events" className="w-full bg-[#E1DFC7] py-16 px-20 md:px-24">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 font-mono mb-2">
         UPCOMING EVENTS
       </h2>
       
-      <div className="max-w-4xl mx-auto border-y border-black">
+      <div className="mx-auto border-y border-black">
         {events.map((event, index) => (
           <div key={index}>
             <div className="grid grid-cols-[5rem_auto_10rem_auto_1fr_auto_auto] items-center gap-2 py-4 font-mono text-gray-800">
