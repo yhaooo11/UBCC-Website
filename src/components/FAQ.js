@@ -30,7 +30,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="relative w-full bg-[#77A5B5] py-16 px-8 md:px-16">
+    <section id="faq" className="relative w-full bg-[#77A5B5] py-16 px-8 md:px-16">
       {/* FLASHED! Star Badge */}
       <div className="absolute bottom-10 left-8 z-10 transform -rotate-12">
         <div className="relative w-56 h-56 md:w-60 md:h-60">

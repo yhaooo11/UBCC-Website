@@ -11,7 +11,7 @@ export default function HeroSection() {
       </div>
       
       {/* Navigation */}
-      <nav className="absolute top-8 right-8 z-10 flex flex-col items-end gap-2 text-white">
+      <nav className="absolute top-8 right-8 z-10 flex flex-col items-end text-white">
         <a href="#events" className="flex items-center gap-2 group">
           <span className="text-xl text-[#E4B834] opacity-0 group-hover:opacity-100 transition-opacity">★</span>
           <span className="font-sans font-bold">Events</span>
@@ -23,6 +23,10 @@ export default function HeroSection() {
         <a href="#team" className="flex items-center gap-2 group">
           <span className="text-xl text-[#E4B834] opacity-0 group-hover:opacity-100 transition-opacity">★</span>
           <span className="font-sans font-bold">Team</span>
+        </a>
+        <a href="#faq" className="flex items-center gap-2 group">
+          <span className="text-xl text-[#E4B834] opacity-0 group-hover:opacity-100 transition-opacity">★</span>
+          <span className="font-sans font-bold">FAQ</span>
         </a>
         <a href="https://www.instagram.com/ubcclimbingclub/" className="flex items-center gap-2 group">
           <span className="text-xl text-[#E4B834] opacity-0 group-hover:opacity-100 transition-opacity">★</span>

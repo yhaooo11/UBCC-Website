@@ -20,7 +20,7 @@ export default function AboutSection() {
           {/* Right Side - Image Grid */}
           <div className="relative grid grid-cols-2 gap-4 pt-10">
             {/* SEND HARD Stamp - overlapping badge */}
-            <div className="absolute top-[-5%] right-[-18%] z-10 transform rotate-12">
+            <div className="absolute top-[-5%] right-[-13%] z-10 transform rotate-12">
               <div className="bg-[#D894A6] rounded-full w-32 h-32 md:w-40 md:h-40 border-2 border-black shadow-lg flex items-center justify-center">
                 <p className="text-[#E1DFC6] font-bold text-lg uppercase font-sans" style={{
                   textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
