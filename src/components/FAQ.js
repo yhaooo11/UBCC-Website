@@ -7,16 +7,21 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: "How do I join?",
-      answer: "To join do this that and whatever! To join do this that and whatever! To join do this that and whatever!"
+      question: "How do I get a membership?",
+      answer: "Bring $15 cash to any event and you're in!"
     },
     {
-      question: "How do I join?",
-      answer: "To join do this that and whatever! To join do this that and whatever! To join do this that and whatever!"
+      question: "How long is the membership valid for?",
+      answer: "The membership is valid until August 2026. It is non-refundable and non-transferable."
     },
     {
-      question: "How do I join?",
-      answer: "To join do this that and whatever! To join do this that and whatever! To join do this that and whatever!"
+      question: "Can non-UBC students join?",
+      answer: "Yes, non-UBC students can join! We aren't AMS affiliated so technically all are welcome. \
+        We obviously are advertising mainly to UBC students to build that community, but anyone can join!"
+    },
+    {
+      question: "I have more questions! Where can I contact you?",
+      answer: "Send us a DM on Instagram @ubcclimbingclub or email us at ubcclimbingclub@gmail.com"
     },
   ];
 

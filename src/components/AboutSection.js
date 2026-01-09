@@ -9,12 +9,11 @@ export default function AboutSection() {
               About
             </h2>
             <p className="text-white font-mono text-lg leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-              deserunt mollit anim id est laborum.
+              UBC Climbing Club is dedicated to fostering community, growth, and adventure through rock climbing. 
+              We bridge the gap between the gym and the crag by hosting regular social events at local Vancouver climbing gyms 
+              and facilitating coached or peer-led outdoor trips. Our mission is to provide a safe, inclusive, and 
+              social environment for climbers of all backgrounds. From total beginners to expert crushers, 
+              there's a place for everyone in our community.
             </p>
           </div>
 
