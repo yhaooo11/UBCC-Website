@@ -16,8 +16,7 @@ export default function FAQ() {
     },
     {
       question: "Can non-UBC students join?",
-      answer: "Yes, non-UBC students can join! We aren't AMS affiliated so technically all are welcome. \
-        We obviously are advertising mainly to UBC students to build that community, but anyone can join!"
+      answer: "Yes, non-UBC students can join!"
     },
     {
       question: "I have more questions! Where can I contact you?",
