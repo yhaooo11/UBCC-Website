@@ -2,7 +2,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="relative w-full bg-[#77A5B5] py-16 px-8 md:px-16">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left Side - About Text */}
           <div>
             <h2 className="text-5xl md:text-6xl font-bold text-[#E4B834] font-sans mb-6 underline decoration-4 underline-offset-4">
@@ -40,7 +40,7 @@ export default function AboutSection() {
             <img 
               src="/IMG_3748.jpg" 
               alt="Climbing club activity" 
-              className="rounded-lg h-72 w-auto max-w-md object-cover col-span-2 justify-self-center"
+              className="rounded-lg h-72 w-full object-cover col-span-2"
             />
           </div>
         </div>
@@ -48,4 +48,3 @@ export default function AboutSection() {
     </section>
   );
 }
-
