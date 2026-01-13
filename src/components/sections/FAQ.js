@@ -1,28 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import faqs from "@/data/faqs.json";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
-
-  const faqs = [
-    {
-      question: "How do I get a membership?",
-      answer: "Bring $15 cash to any event and you're in!"
-    },
-    {
-      question: "How long is the membership valid for?",
-      answer: "The membership is valid until August 2026. It is non-refundable and non-transferable."
-    },
-    {
-      question: "Can non-UBC students join?",
-      answer: "Yes, non-UBC students can join!"
-    },
-    {
-      question: "I have more questions! Where can I contact you?",
-      answer: "Send us a DM on Instagram @ubcclimbingclub or email us at ubcclimbingclub@gmail.com"
-    },
-  ];
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -31,7 +13,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="relative w-full bg-[#77A5B5] py-16 px-8 md:px-16">
       {/* FLASHED! Star Badge */}
-      <div className="absolute bottom-10 left-8 z-10 transform -rotate-12">
+      <div className="absolute bottom-45 left-25 z-10 transform -rotate-12">
         <div className="relative w-56 h-56 md:w-60 md:h-60">
           <svg viewBox="0 0 100 100" className="w-full h-full filter drop-shadow-lg">
             <polygon
@@ -89,4 +71,3 @@ export default function FAQ() {
     </section>
   );
 }
-
