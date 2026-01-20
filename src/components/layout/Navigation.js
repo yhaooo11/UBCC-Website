@@ -3,17 +3,16 @@
 import { useState, useEffect } from "react";
 
 export default function Navigation() {
-  const [showStickyNav, setShowStickyNav] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky nav after scrolling past the hero section
-      setShowStickyNav(window.scrollY > window.innerHeight - 100);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-    
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -26,47 +25,54 @@ export default function Navigation() {
   ];
 
   return (
-    <>
-      {/* Original vertical nav - absolute, scrolls with hero */}
-      <nav className="absolute top-8 right-8 z-10">
-        <div className="flex flex-col items-end text-white">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
-              className="flex items-center gap-2 group"
-            >
-              <span className="text-2xl text-[#E4B834] opacity-0 group-hover:opacity-100 transition-opacity">
-                ★
-              </span>
-              <span className="font-sans font-bold text-lg">
-                {link.label}
-              </span>
-            </a>
-          ))}
-        </div>
-      </nav>
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-visible"
+      style={{
+        backgroundImage: 'url(/paper.png), url(/paper.png)',
+        backgroundRepeat: 'repeat-x, repeat-x',
+        backgroundPosition: '0 0, 50px 0', // The second layer is shifted 40px
+        backgroundSize: 'auto 100%',
+        backgroundColor: 'transparent'
+      }}
+    >
+      <div className="absolute w-full h-1/2 bg-white"></div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-4 relative z-10">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo/Brand */}
+          <a
+            href="#"
+            className="flex items-center"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <img 
+              src="/logo.png" 
+              alt="UBCCC logo" 
+              className="w-1/8"
+            />
+          </a>
 
-      {/* Sticky horizontal nav - appears after scrolling past hero */}
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50  backdrop-blur-lg py-4 px-8 transition-transform duration-300 ${
-          showStickyNav ? "translate-y-0" : "-translate-y-full"
-        }`}
-      >
-        <div className="flex flex-row justify-end gap-6 text-white">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
-              className="font-sans font-bold text-lg hover:text-[#E4B834] transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {/* Navigation Links */}
+          <div className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
+                className="font-sans font-bold text-base transition-colors duration-300 relative group text-foreground"
+              >
+                {link.label}
+                <span
+                  className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#E4B834] transition-all duration-300 group-hover:w-full ${isScrolled ? "bg-[#E4B834]" : "bg-[#E4B834]"
+                    }`}
+                />
+              </a>
+            ))}
+          </div>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
