@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <main className="w-full">
       <Navigation />
-      <HeroSection />
+      {/* <HeroSection />
       <Events />
       <AboutSection />
       <ExecMembers />
       <FAQ />
-      <Footer />
+      <Footer /> */}
     </main>
   );
 }
