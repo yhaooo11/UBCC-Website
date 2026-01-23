@@ -61,7 +61,7 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
-                className="font-sans font-bold text-base transition-colors duration-300 relative group text-foreground"
+                className="font-sans font-bold text-background transition-colors duration-300 relative group"
               >
                 {link.label}
                 <span

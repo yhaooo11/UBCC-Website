@@ -8,6 +8,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-courier-prime);
   --font-mono: var(--font-courier-prime);
+  --font-judson: var(--font-judson);
+  --font-eb-garamond: var(--font-eb-garamond);
 
   /* UBC Climbing Club Color Palette */
   --color-metallic-gold: #E4B834;

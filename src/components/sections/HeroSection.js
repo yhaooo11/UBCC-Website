@@ -1,20 +1,38 @@
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/hero.png')",
-        }}
-      >
+    <section className="mx-auto max-w-3xl text-9xl">
+      <div className="h-[9rem] flex content-between justify-between font-judson">
+        UBC
+        <div className="w-[60%]">
+         <img 
+              src="/hero.png" 
+              alt="Climbing club activity" 
+              className="h-full w-full object-cover object-top"
+            />
+        </div>
+
       </div>
 
-      {/* Title Overlay */}
-      <div className="relative z-10 text-center">
-        <h1 className="text-6xl md:text-8xl font-bold text-white font-mono tracking-wider">
-          UBC CLIMBING CLUB
-        </h1>
+      <div className="h-[8rem] mb-7 flex content-between justify-between font-eb-garamond italic">
+        <div className="w-[30%]">
+          <img 
+              src="/IMG_9481.jpg" 
+              alt="Climbing club activity" 
+              className="h-full w-full object-cover ml-4"
+            />
+        </div>
+        Climbing
+      </div>
+
+      <div className="h-[8rem] flex content-between justify-between">
+        Club
+        <div className="w-[60%]">
+        <img 
+              src="/IMG_9525.jpg" 
+              alt="Climbing club activity" 
+              className="h-full w-full object-cover object-[50%_40%] ml-4"
+            />
+        </div>
       </div>
     </section>
   );
