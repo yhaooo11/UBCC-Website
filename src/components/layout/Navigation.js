@@ -50,7 +50,7 @@ export default function Navigation() {
             <img 
               src="/logo.png" 
               alt="UBCCC logo" 
-              className="w-1/8"
+              className="w-26"
             />
           </a>
 
@@ -61,7 +61,7 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
-                className="font-sans font-bold text-background transition-colors duration-300 relative group"
+                className="font-judson font-bold text-background transition-colors duration-300 relative group"
               >
                 {link.label}
                 <span
