@@ -20,7 +20,7 @@ export default function HeroSection() {
 
       </div>
 
-      <div className="h-[10rem] mb-10 flex content-between justify-between font-eb-garamond italic">
+      <div className="h-[10rem] mb-10 flex content-between justify-between font-pp-editorial-new italic">
         <div className="relative w-[30%]">
           <img
             src="/IMG_9481.jpg"
@@ -38,7 +38,7 @@ export default function HeroSection() {
         Climbing
       </div>
 
-      <div className="h-[10rem] flex content-between justify-between text-[10rem]">
+      <div className="h-[10rem] flex content-between justify-between text-[10rem] font-pp-neue-montreal">
         Club
         <div className="relative w-[60%]">
           <img

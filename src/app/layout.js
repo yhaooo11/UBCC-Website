@@ -1,17 +1,6 @@
-import { Courier_Prime, PT_Serif, Judson, EB_Garamond } from 'next/font/google';
+import { Judson } from 'next/font/google';
+import localFont from 'next/font/local'
 import "./globals.css";
-
-const courierPrime = Courier_Prime({
-  variable: "--font-courier-prime",
-  subsets: ["latin"],
-  weight: ['400', '700'],
-});
-
-const ptSerif = PT_Serif({
-  variable: "--font-pt-serif",
-  subsets: ["latin"],
-  weight: ['400', '700'],
-});
 
 const judson = Judson({
   variable: "--font-judson",
@@ -19,11 +8,17 @@ const judson = Judson({
   weight: ['400'],
 })
 
-const ebGaramond = EB_Garamond({
-  variable: "--font-eb-garamond",
-  subsets: ["latin"],
-  weight: ['400'],
-  style: ['italic'],
+const ppEditorialNew = localFont({
+  src: "./fonts/PPEditorialNew-Italic.woff2",
+  variable: "--font-pp-editorial-new",
+  display: "swap",
+  style: 'italic',
+})
+
+const ppNeueMontreal = localFont({
+  src: "./fonts/ppneuemontreal-medium.woff2",
+  variable: "--font-pp-neue-montreal",
+  display: "swap",
 })
 
 export const metadata = {
@@ -35,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${courierPrime.variable} ${ptSerif.variable} ${judson.variable} ${ebGaramond.variable} antialiased`}
+        className={`${ppNeueMontreal.variable} ${judson.variable} ${ppEditorialNew.variable} antialiased`}
       >
         {children}
       </body>
