@@ -24,6 +24,27 @@ export default function Navigation() {
     { href: "https://www.instagram.com/ubcclimbingclub/", label: "Instagram", external: true },
   ];
 
+  const handleNavClick = (e, href) => {
+    // Only handle internal anchor links
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        // Get the nav bar height (h-20 = 80px + pb-4 = 16px = ~96px, adding extra padding)
+        const navHeight = 120;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+      }
+    }
+    // External links will use default behavior
+  };
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-visible"
@@ -61,6 +82,7 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
+                onClick={(e) => !link.external && handleNavClick(e, link.href)}
                 className="font-judson font-bold text-background transition-colors duration-300 relative group"
               >
                 {link.label}

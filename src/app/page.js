@@ -12,12 +12,9 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <Events />
+      <AboutSection />
       <FAQ />
       <Footer />
-      {/* <HeroSection />
-      <AboutSection />
-      <ExecMembers />
-       */}
     </main>
   );
 }
