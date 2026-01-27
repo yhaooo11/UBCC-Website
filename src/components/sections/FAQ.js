@@ -11,7 +11,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="mx-auto max-w-4xl mt-30">
+    <section id="faq" className="mx-auto max-w-4xl mt-30 px-4 md:px-0">
       <h2 className="mb-6 font-serif text-6xl">before your send...</h2>
 
       <div>
