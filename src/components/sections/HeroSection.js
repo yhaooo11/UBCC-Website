@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <section className="mx-auto max-w-3xl text-9xl">
+    <section className="mx-auto max-w-4xl text-9xl">
       <div className="h-[10rem] mb-10 flex content-between justify-between font-judson text-[10rem]">
         UBC
         <div className="relative w-[60%]">

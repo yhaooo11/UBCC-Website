@@ -1,6 +1,6 @@
 export default function Card({ title, description, date, link, imgUrl }) {
     return (
-        <div className="relative w-80 bg-[#FDFAEA] p-2 text-background">
+        <div className="relative w-72 bg-[#FDFAEA] p-2 text-background">
             <img src="/stickers/tape3.svg"
                 className="absolute top-[-40] left-1/2 -translate-x-1/2 z-20 w-24 rotate-[-2deg]" />
             <img

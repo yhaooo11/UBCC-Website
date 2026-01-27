@@ -7,14 +7,14 @@ export default function Events() {
 
   return (
     <section id="events" className="mt-30">
-      <div className="mx-auto max-w-3xl mb-12">
+      <div className="mx-auto max-w-4xl mb-12">
         <h2 className="mb-3 text-6xl font-serif">upcoming sends...</h2>
         <div className="text-2xl font-pp-neue-montreal">
           Checkout events below and sign up!
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-x-2 gap-y-6 mx-auto max-w-5xl">
+      <div className="grid grid-cols-3 gap-x-2 gap-y-6 mx-auto max-w-4xl">
         <Card
           title={"The Send Off"}
           description={"Kick off the new term with our first community mixer. Whether you're a seasoned lead climber or just bought your first pair of shoes, come meet your new belay partners. We'll be sharing beta, trading stickers, and planning our next trips to Squamish."}
