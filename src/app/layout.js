@@ -1,6 +1,12 @@
-import { Judson } from 'next/font/google';
+import { DM_Serif_Display, Judson } from 'next/font/google';
 import localFont from 'next/font/local'
 import "./globals.css";
+
+const dmSerifDisplay = DM_Serif_Display({
+  variable: "--font-dm-serif-display",
+  subsets: ["latin"],
+  weight: ["400"]
+})
 
 const judson = Judson({
   variable: "--font-judson",
@@ -30,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${ppNeueMontreal.variable} ${judson.variable} ${ppEditorialNew.variable} antialiased`}
+        className={`${dmSerifDisplay.variable} ${ppNeueMontreal.variable} ${judson.variable} ${ppEditorialNew.variable} antialiased`}
       >
         {children}
       </body>

@@ -11,8 +11,8 @@ export default function Home() {
     <main className="w-full pt-40">
       <Navigation />
       <HeroSection />
-      {/* <HeroSection />
       <Events />
+      {/* <HeroSection />
       <AboutSection />
       <ExecMembers />
       <FAQ />
