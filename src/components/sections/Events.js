@@ -1,80 +1,43 @@
 import eventsData from "@/data/events.json";
+import Card from "../layout/Card";
 
 export default function Events() {
   const events = eventsData.upcoming;
   const pastEvents = eventsData.past;
 
+  // Hard-coded dummy array for 6 cards for now..
+  const dummyEvents = Array(6).fill({
+    title: "The Send Off",
+    description: "Kick off the new term with our first community mixer. Whether you're a seasoned lead climber or just bought your first pair of shoes, come meet your new belay partners.",
+    date: "Jan 6",
+    link: "https://www.instagram.com/"
+  });
+
   return (
-    <section id="events" className="w-full bg-[#E1DFC7] py-8 md:py-16 px-4 sm:px-8 md:px-20 lg:px-24">
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 font-mono mb-2">
-        UPCOMING EVENTS
-      </h2>
-      
-      <div className="mx-auto border-y border-black">
-        {events.map((event, index) => (
-          <div key={index}>
-            {/* Mobile layout - stacked */}
-            <div className="flex flex-col md:hidden py-4 font-mono text-gray-800 gap-2">
-              <div className="flex items-center gap-2">
-                <span className="text-base font-bold">{event.date}</span>
-                <span className="text-base text-gray-600">|</span>
-                <span className="text-base">{event.time}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-base">{event.name}</span>
-                <span className="text-base text-gray-600">|</span>
-                <a href={event.link} target="_blank" rel="noopener noreferrer" className="text-base text-gray-800 hover:underline">{event.action}</a>
-              </div>
-            </div>
-            {/* Desktop layout - grid */}
-            <div className="hidden md:grid grid-cols-[5rem_auto_10rem_auto_1fr_auto_auto] items-center gap-2 py-4 font-mono text-gray-800">
-              <span className="text-xl font-bold">{event.date}</span>
-              <span className="text-xl text-gray-600 text-center">|</span>
-              <span className="text-xl text-left">{event.time}</span>
-              <span className="text-xl text-gray-600 text-center">|</span>
-              <span className="text-xl text-left">{event.name}</span>
-              <span className="text-xl text-gray-600 text-center">|</span>
-              <a href={event.link} target="_blank" rel="noopener noreferrer" className="text-xl text-gray-800 hover:underline text-left">{event.action}</a>
-            </div>
-            {index < events.length - 1 && (
-              <div className="border-t border-black"></div>
-            )}
-          </div>
-        ))}
+    <section id="events" className="mt-30 px-6 md:px-0">
+      <div className="mx-auto max-w-4xl mb-12">
+        <h2 className="mb-3 text-5xl md:text-6xl font-serif">upcoming sends...</h2>
+        <div className="text-xl md:text-2xl font-pp-neue-montreal">
+          Checkout events below and sign up!
+        </div>
       </div>
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 font-mono mt-8 md:mt-16">
-        PAST EVENTS
-      </h2>
-      
-      <div className="mx-auto border-y border-black">
-        {pastEvents.map((event, index) => (
-          <div key={index}>
-            {/* Mobile layout - stacked */}
-            <div className="flex flex-col md:hidden py-4 font-mono text-gray-800 gap-2">
-              <div className="flex items-center gap-2">
-                <span className="text-base font-bold">{event.date}</span>
-                <span className="text-base text-gray-600">|</span>
-                <span className="text-base">{event.time}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-base">{event.name}</span>
-                <span className="text-base text-gray-600">|</span>
-                <a href={event.link} target="_blank" rel="noopener noreferrer" className="text-base text-gray-800 hover:underline">{event.action}</a>
-              </div>
-            </div>
-            {/* Desktop layout - grid */}
-            <div className="hidden md:grid grid-cols-[5rem_auto_10rem_auto_1fr_auto_auto] items-center gap-2 py-4 font-mono text-gray-800">
-              <span className="text-xl font-bold">{event.date}</span>
-              <span className="text-xl text-gray-600 text-center">|</span>
-              <span className="text-xl text-left">{event.time}</span>
-              <span className="text-xl text-gray-600 text-center">|</span>
-              <span className="text-xl text-left">{event.name}</span>
-              <span className="text-xl text-gray-600 text-center">|</span>
-              <a href={event.link} target="_blank" rel="noopener noreferrer" className="text-xl text-gray-800 hover:underline text-left">{event.action}</a>
-            </div>
-            {index < pastEvents.length - 1 && (
-              <div className="border-t border-black"></div>
-            )}
+
+      {/* MOBILE: Horizontal scroll (flex-nowrap + overflow-x-auto)
+          DESKTOP: 3-column grid (md:grid-cols-3)
+      */}
+      <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-4 md:gap-y-8 md:overflow-visible mx-auto max-w-4xl">
+        {events.map((event, index) => (
+          <div 
+            key={index} 
+            className="min-w-[75vw] md:min-w-0 snap-center shrink-0"
+          >
+            <Card
+              title={event.title}
+              description={event.description}
+              date={event.date}
+              link={event.link}
+              imgUrl={event.imgUrl}
+            />
           </div>
         ))}
       </div>

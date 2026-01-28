@@ -1,17 +1,31 @@
-import { Courier_Prime, PT_Serif } from 'next/font/google';
+import { DM_Serif_Display, Judson } from 'next/font/google';
+import localFont from 'next/font/local'
 import "./globals.css";
 
-const courierPrime = Courier_Prime({
-  variable: "--font-courier-prime",
+const dmSerifDisplay = DM_Serif_Display({
+  variable: "--font-dm-serif-display",
   subsets: ["latin"],
-  weight: ['400', '700'],
-});
+  weight: ["400"]
+})
 
-const ptSerif = PT_Serif({
-  variable: "--font-pt-serif",
+const judson = Judson({
+  variable: "--font-judson",
   subsets: ["latin"],
-  weight: ['400', '700'],
-});
+  weight: ['400'],
+})
+
+const ppEditorialNew = localFont({
+  src: "./fonts/PPEditorialNew-Italic.woff2",
+  variable: "--font-pp-editorial-new",
+  display: "swap",
+  style: 'italic',
+})
+
+const ppNeueMontreal = localFont({
+  src: "./fonts/ppneuemontreal-medium.woff2",
+  variable: "--font-pp-neue-montreal",
+  display: "swap",
+})
 
 export const metadata = {
   title: "UBC Climbing Club",
@@ -22,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${courierPrime.variable} ${ptSerif.variable} antialiased`}
+        className={`${dmSerifDisplay.variable} ${ppNeueMontreal.variable} ${judson.variable} ${ppEditorialNew.variable} antialiased`}
       >
         {children}
       </body>

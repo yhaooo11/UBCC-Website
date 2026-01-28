@@ -3,9 +3,25 @@
     {
       "date": "Jan 27",
       "time": "7:00-9:00pm",
-      "name": "Progression Night",
+      "title": "Progression Night",
       "action": "Sign up here",
-      "link": "https://docs.google.com/forms/d/e/1FAIpQLSePEg19Z0i2UTFgT6BcSYHH8r5MfHwatfNJJWIoiJivckA20g/closedform"
+      "description": "Get stoked UBCCC we have another climbing night in store for u 🫵 @ progression bouldering gym from 7-9pm!! Already have a membership at PBG? Good news! This event is free for you! Just make sure to check in with us at the front",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSePEg19Z0i2UTFgT6BcSYHH8r5MfHwatfNJJWIoiJivckA20g/closedform",
+      "imgUrl": "/IMG_9525.jpg"
+    },
+    {
+      "date": "Feb 6",
+      "time": "6:30-8:30pm",
+      "title": "Hive Night",
+      "description": "Join us for Hive Nights at Hive Vancouver from 6:30-8:30pm, and enjoy some well-deserved Earnest ice cream with fellow climbers afterwards! Only $16 with rentals included! P.S. don't forget to bring $15 cash for your UBCCC membership!",
+      "imgUrl": "/IMG_9481.jpg"
+    },
+    {
+      "date": "TBD",
+      "time": "TBD",
+      "title": "Jeopardy night",
+      "description": "Chalk up your trivia skills for UBCCC Jeopardy night! It's time to stop thinking about your project and start thinking about your beta. Whether you're a seasoned lead climber or you just finished your first V0, this is your chance to show off your mental grip strength.",
+      "imgUrl": "/IMG_1212.jpg"
     }
   ],
   "past": [

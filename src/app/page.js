@@ -8,12 +8,11 @@ import FAQ from "@/components/sections/FAQ";
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <main className="w-full md:pt-38">
       <Navigation />
       <HeroSection />
       <Events />
       <AboutSection />
-      {/* <ExecMembers /> */}
       <FAQ />
       <Footer />
     </main>
