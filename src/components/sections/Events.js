@@ -26,7 +26,7 @@ export default function Events() {
           DESKTOP: 3-column grid (md:grid-cols-3)
       */}
       <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-4 md:gap-y-8 md:overflow-visible mx-auto max-w-4xl">
-        {dummyEvents.map((event, index) => (
+        {events.map((event, index) => (
           <div 
             key={index} 
             className="min-w-[75vw] md:min-w-0 snap-center shrink-0"
@@ -36,6 +36,7 @@ export default function Events() {
               description={event.description}
               date={event.date}
               link={event.link}
+              imgUrl={event.imgUrl}
             />
           </div>
         ))}

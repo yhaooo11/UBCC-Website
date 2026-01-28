@@ -6,9 +6,9 @@ export default function HeroSection() {
         UBC
         <div className="relative w-[60%]">
           <img
-            src="/hero.png"
+            src="/IMG_1126.jpg"
             alt="Climbing club activity"
-            className="h-full w-full object-cover object-[50%_35%]"
+            className="h-full w-full object-cover object-[50%_55%]"
           />
 
           <img src="/stickers/hold_red.svg"
@@ -24,13 +24,13 @@ export default function HeroSection() {
       <div className="h-[10rem] mb-10 flex content-between justify-between font-pp-editorial-new italic">
         <div className="relative w-[30%]">
           <img
-            src="/IMG_9481.jpg"
+            src="/IMG_1125.jpg"
             alt="Climbing club activity"
             className="h-full w-full object-cover ml-4"
           />
 
           <img src="/stickers/hold_green.svg"
-            className="absolute -top-20 -left-15 z-20 w-36" />
+            className="absolute -top-18 -left-15 z-20 w-36" />
           <img src="/stickers/tape.svg"
             className="absolute -top-12 -right-15 z-20 w-24 rotate-90" />
           <img src="/stickers/hold_blue.svg"
@@ -64,9 +64,9 @@ export default function HeroSection() {
     <section className="mt-36 px-3 md:hidden">
       <div className="flex justify-end relative w-full pr-4">
           <img
-            src="/hero.png"
+            src="/IMG_1126.jpg"
             alt="Climbing club activity"
-            className="h-full w-[70%] object-cover object-[50%_35%]"
+            className="h-42 w-[70%] object-cover object-[50%_35%]"
           />
 
           <img src="/stickers/hold_red.svg"

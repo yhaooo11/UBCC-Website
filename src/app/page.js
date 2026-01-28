@@ -8,7 +8,7 @@ import FAQ from "@/components/sections/FAQ";
 
 export default function Home() {
   return (
-    <main className="w-full md:pt-40">
+    <main className="w-full md:pt-38">
       <Navigation />
       <HeroSection />
       <Events />
