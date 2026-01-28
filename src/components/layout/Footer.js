@@ -9,16 +9,16 @@ export default function Footer() {
         backgroundColor: 'transparent',
         transform: 'rotate(180deg)'
       }}></div>
-      <div className="flex justify-between items-center w-full h-20 bg-white absolute bottom-0 z-20 px-6 md:px-36 pt-2">
+      <div className="flex justify-between items-center w-full h-24 bg-white absolute bottom-0 z-20 px-6 md:px-36 pt-2 pb-4">
         <a href="https://www.instagram.com/ubcclimbingclub/"
           target="_blank" rel="noopener noreferrer" >
-          <img src="/instagram-logo.svg" className="w-10" />
+          <img src="/instagram-logo.svg" className="w-12" />
         </a>
 
         <img
           src="/logo.png"
           alt="UBCCC logo"
-          className="w-26"
+          className="w-28"
         />
       </div>
     </footer>

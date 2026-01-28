@@ -1,7 +1,7 @@
 export default function AboutSection() {
   return (
     <section id="about" className="mx-auto max-w-4xl w-full mt-10 md:mt-25 px-4 md:px-0">
-      <h2 className="mb-6 text-4xl md:text-6xl font-serif">our roots.</h2>
+      <h2 className="mb-6 text-5xl md:text-7xl font-serif">our roots.</h2>
 
       {/* Adjusted width to be full on mobile, half on desktop */}
       <div className="w-full md:w-1/2 mb-12 space-y-4">
