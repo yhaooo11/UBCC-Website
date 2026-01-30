@@ -1,7 +1,7 @@
 export default function Card({ title, description, date, link, imgUrl }) {
     return (
         <div className="relative w-72 h-105 bg-[#FDFAEA] p-2 text-background flex flex-col">
-            <img src="/stickers/tape3.svg"
+            <img src="/stickers/tape3.png"
                 className="absolute top-[-40] left-1/2 -translate-x-1/2 z-20 w-24 rotate-[-2deg]" />
             <img
                 src={imgUrl}

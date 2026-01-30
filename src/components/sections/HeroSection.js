@@ -13,7 +13,7 @@ export default function HeroSection() {
 
           <img src="/stickers/hold_red.svg"
             className="absolute -top-10 -right-10 z-20 w-20" />
-          <img src="/stickers/tape.svg"
+          <img src="/stickers/tape.png"
             className="absolute -top-10 -left-10 z-20 w-24" />
           <img src="/stickers/hold_purp.svg"
             className="absolute top-25 -left-9 z-20 w-24" />
@@ -31,7 +31,7 @@ export default function HeroSection() {
 
           <img src="/stickers/hold_green.svg"
             className="absolute -top-18 -left-15 z-20 w-36" />
-          <img src="/stickers/tape.svg"
+          <img src="/stickers/tape.png"
             className="absolute -top-12 -right-15 z-20 w-24 rotate-90" />
           <img src="/stickers/hold_blue.svg"
             className="absolute top-28 -right-14 z-20 w-18" />
@@ -52,7 +52,7 @@ export default function HeroSection() {
             className="absolute top-30 left-40 z-20 w-20" />
           <img src="/stickers/hold_yellow.svg"
             className="absolute -top-7 -right-15 z-20 w-24 rotate-12" />
-          <img src="/stickers/tape2.svg"
+          <img src="/stickers/tape2.png"
             className="absolute top-30 -right-10 z-20 w-18" />
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function HeroSection() {
 
           <img src="/stickers/hold_red.svg"
             className="absolute -top-10 -right-5 z-20 w-20" />
-          <img src="/stickers/tape.svg"
+          <img src="/stickers/tape.png"
             className="absolute -top-10 left-15 z-20 w-24" />
           <img src="/stickers/hold_purp.svg"
             className="absolute top-25 left-15 z-20 w-24" />
@@ -92,7 +92,7 @@ export default function HeroSection() {
             className="absolute -bottom-10 left-40 z-20 w-20" />
           <img src="/stickers/hold_yellow.svg"
             className="absolute -top-7 -right-15 z-20 w-24 rotate-12" />
-          <img src="/stickers/tape2.svg"
+          <img src="/stickers/tape2.png"
             className="absolute -bottom-10 -right-10 z-20 w-18" />
         </div>
     </section>

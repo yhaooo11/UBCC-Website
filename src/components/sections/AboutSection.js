@@ -39,7 +39,7 @@ export default function AboutSection() {
             className="w-full h-full object-cover"
           />
 
-          <img src="/stickers/tape.svg"
+          <img src="/stickers/tape.png"
             className="absolute -bottom-10 -left-6 z-20 w-24 rotate-70" alt="" />
 
           <img src="/stickers/hold_yellow.svg"
@@ -61,7 +61,7 @@ export default function AboutSection() {
             alt="Climbing club activity"
             className="w-full h-full object-cover"
           />
-          <img src="/stickers/tape.svg"
+          <img src="/stickers/tape.png"
             className="absolute -top-8 -left-12 z-20 w-24 rotate-140" alt="" />
         </div>
 
@@ -74,7 +74,7 @@ export default function AboutSection() {
           />
           <img src="/stickers/hold_red.svg"
             className="absolute -top-12 -left-12 z-20 w-24 rotate-265" alt="" />
-          <img src="/stickers/flashed_sticker.svg"
+          <img src="/stickers/flashed_sticker.png"
             className="absolute -top-48 -right-45 z-20 w-40" alt="" />
           <img src="/stickers/arrow2.svg"
             className="absolute -top-20 -right-28 z-20 w-50" alt="" />
@@ -87,9 +87,9 @@ export default function AboutSection() {
             alt="Climbing club activity"
             className="w-full h-full object-cover"
           />
-          <img src="/stickers/tape2.svg"
+          <img src="/stickers/tape2.png"
             className="absolute -bottom-9 -right-8 z-20 w-20 rotate-20" alt="" />
-          <img src="/stickers/send_sticker.svg"
+          <img src="/stickers/send_sticker.png"
             className="absolute -bottom-14 -left-48 z-20 w-40" alt="" />
           <img src="/stickers/arrow.svg"
             className="absolute -bottom-10 -left-20 z-20 w-50" alt="" />
