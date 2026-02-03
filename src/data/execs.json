@@ -1,0 +1,117 @@
+[
+  {
+    "name": "Jaida",
+    "title": "Co-President",
+    "image": "/headshots/jaida_co_president.jpg"
+  },
+  {
+    "name": "Lily",
+    "title": "Co-President",
+    "image": "/headshots/lily_co_president.jpg"
+  },
+  {
+    "name": "Stella",
+    "title": "VP Internal",
+    "image": "/headshots/stella_vp.jpg"
+  },
+  {
+    "name": "Sofie",
+    "title": "Head of Events",
+    "image": "/headshots/sofie_events.jpg"
+  },
+  {
+    "name": "Evelyn",
+    "title": "Head of Events",
+    "image": "/headshots/evelyn_events.jpg"
+  },
+  {
+    "name": "Iman",
+    "title": "Head of Events",
+    "image": "/headshots/iman_events.jpg"
+  },
+  {
+    "name": "Aiden",
+    "title": "Events",
+    "image": "/headshots/aiden_events.jpg"
+  },
+  {
+    "name": "Hailan",
+    "title": "Events",
+    "image": "/headshots/hailan_events.jpg"
+  },
+  {
+    "name": "Kimberly",
+    "title": "Events",
+    "image": "/headshots/kimberly_events.jpg"
+  },
+  {
+    "name": "Lucy",
+    "title": "Events",
+    "image": "/headshots/lucy_events.jpg"
+  },
+  {
+    "name": "Maddy",
+    "title": "Events",
+    "image": "/headshots/maddy_events.jpg"
+  },
+  {
+    "name": "Margaret",
+    "title": "Events",
+    "image": "/headshots/margaret_events.jpg"
+  },
+  {
+    "name": "Jason",
+    "title": "Finance",
+    "image": "/headshots/jason_finance.jpg"
+  },
+  {
+    "name": "Jerico",
+    "title": "Finance",
+    "image": "/headshots/jerico_finance.jpg"
+  },
+  {
+    "name": "Eden",
+    "title": "Trips",
+    "image": "/headshots/eden_trips.jpg"
+  },
+  {
+    "name": "Melody",
+    "title": "Trips",
+    "image": "/headshots/melody_trips.jpg"
+  },
+  {
+    "name": "Rebecca",
+    "title": "Trips",
+    "image": "/headshots/rebecca_trips.jpg"
+  },
+  {
+    "name": "Harjeev",
+    "title": "Photographer",
+    "image": "/headshots/harjeev_photographer.jpg"
+  },
+  {
+    "name": "Madi",
+    "title": "Photographer",
+    "image": "/headshots/madi_photographer.jpg"
+  },
+  {
+    "name": "Jaelyn",
+    "title": "Graphic Design",
+    "image": "/headshots/jaelyn_graphics.jpg"
+  },
+  {
+    "name": "Rina",
+    "title": "Graphic Design",
+    "image": "/headshots/rina_graphics.jpg"
+  },
+  {
+    "name": "Timothy",
+    "title": "Website",
+    "image": "/headshots/timothy_website.jpg"
+  },
+  {
+    "name": "Yifan",
+    "title": "Website",
+    "image": "/headshots/yifan_website.jpg"
+  }
+]
