@@ -1,20 +1,21 @@
 {
   "upcoming": [
     {
-      "date": "Jan 27",
-      "time": "7:00-9:00pm",
-      "title": "Progression Night",
-      "action": "Sign up here",
-      "description": "Get stoked UBCCC we have another climbing night in store for u 🫵 @ progression bouldering gym from 7-9pm!! Already have a membership at PBG? Good news! This event is free for you! Just make sure to check in with us at the front",
-      "link": "https://docs.google.com/forms/d/e/1FAIpQLSePEg19Z0i2UTFgT6BcSYHH8r5MfHwatfNJJWIoiJivckA20g/closedform",
-      "imgUrl": "/IMG_9525.jpg"
-    },
-    {
       "date": "Feb 6",
       "time": "6:30-8:30pm",
       "title": "Hive Night",
       "description": "Join us for Hive Nights at Hive Vancouver from 6:30-8:30pm, and enjoy some well-deserved Earnest ice cream with fellow climbers afterwards! Only $16 with rentals included! P.S. don't forget to bring $15 cash for your UBCCC membership!",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSdGPjKdjFPNNpF7mSjq65DoUO8CINSvLCStw9tnvT6hyLboug/viewform",
+      "action": "RSVP",
       "imgUrl": "/IMG_9481.jpg"
+    },
+    {
+      "date": "Feb 13",
+      "time": "5:00-7:00pm",
+      "title": "Valentine's Event",
+      "description": "Celebrate Valentine's Day with our Climb & Craft social! Please note that all climbers must be belay certified to hit the wall, but anyone is welcome to join the crafting session! Members join for free, non-members can enter for a $5 fee.",
+      "link": "",
+      "imgUrl": "/IMG_3321.png"
     },
     {
       "date": "TBD",
