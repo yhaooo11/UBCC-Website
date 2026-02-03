@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +19,37 @@ export default function Navigation() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // When landing on home with a hash (e.g. from /team via /#about), scroll to the section
+  useEffect(() => {
+    if (pathname !== "/" || typeof window === "undefined") return;
+    const hash = window.location.hash?.slice(1);
+    if (!hash) return;
+
+    const navHeight = 120;
+    const scrollToTarget = () => {
+      const target = document.getElementById(hash);
+      if (target) {
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top: targetPosition, behavior: "smooth" });
+        return true;
+      }
+      return false;
+    };
+
+    let timeoutId;
+    const rafId = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (!scrollToTarget()) {
+          timeoutId = setTimeout(scrollToTarget, 100);
+        }
+      });
+    });
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [pathname]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -30,25 +64,31 @@ export default function Navigation() {
   }, [isOpen]);
 
   const navLinks = [
-    { href: "#events", label: "Events" },
-    { href: "#about", label: "About" },
-    { href: "#team", label: "Team" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/#events", label: "Events" },
+    { href: "/#about", label: "About" },
+    { href: "/team", label: "Team" },
+    { href: "/#faq", label: "FAQ" },
     { href: "https://www.instagram.com/ubcclimbingclub/", label: "Instagram", external: true },
   ];
 
   const mobileNavLinks = [
-    { href: "#", label: "home" },
-    { href: "#events", label: "events" },
-    { href: "#about", label: "about us" },
-    { href: "#faq", label: "faq" },
+    { href: "/", label: "home" },
+    { href: "/#events", label: "events" },
+    { href: "/#about", label: "about us" },
+    { href: "/team", label: "team" },
+    { href: "/#faq", label: "faq" },
   ];
 
   const handleNavClick = (e, href) => {
-    // Only handle internal anchor links
-    if (href.startsWith("#")) {
+    const isHashLink = href.startsWith("#") || href.startsWith("/#");
+    // Only handle internal anchor links (with optional leading "/")
+    if (isHashLink) {
+      // If we're not on the home page, allow normal navigation to "/#section"
+      if (typeof window !== "undefined" && window.location.pathname !== "/") {
+        return;
+      }
       e.preventDefault();
-      const targetId = href.substring(1);
+      const targetId = href.split("#")[1];
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
@@ -83,11 +123,15 @@ export default function Navigation() {
             <div className="flex items-center justify-between h-20">
               {/* Logo/Brand */}
               <a
-                href="#"
+                href="/"
                 className="flex items-center"
                 onClick={(e) => {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  // If we're already on the home page, smooth scroll to top.
+                  // Otherwise, let the browser navigate to "/".
+                  if (typeof window !== "undefined" && window.location.pathname === "/") {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
                 }}
               >
                 <img
@@ -99,21 +143,52 @@ export default function Navigation() {
 
               {/* Navigation Links */}
               <div className="flex items-center gap-8">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
-                    onClick={(e) => !link.external && handleNavClick(e, link.href)}
-                    className="font-judson font-bold text-background text-xl transition-colors duration-300 relative group"
-                  >
-                    {link.label}
+                {navLinks.map((link) => {
+                  const linkClassName = "font-judson font-bold text-background text-xl transition-colors duration-300 relative group";
+                  const underline = (
                     <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#E4B834] transition-all duration-300 group-hover:w-full ${isScrolled ? "bg-[#E4B834]" : "bg-[#E4B834]"
-                        }`}
+                      className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#E4B834] transition-all duration-300 group-hover:w-full ${isScrolled ? "bg-[#E4B834]" : "bg-[#E4B834]"}`}
                     />
-                  </a>
-                ))}
+                  );
+                  if (link.external) {
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClassName}
+                      >
+                        {link.label}
+                        {underline}
+                      </a>
+                    );
+                  }
+                  if (link.href.startsWith("/")) {
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href)}
+                        className={linkClassName}
+                      >
+                        {link.label}
+                        {underline}
+                      </Link>
+                    );
+                  }
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className={linkClassName}
+                    >
+                      {link.label}
+                      {underline}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -143,9 +218,13 @@ export default function Navigation() {
                 href="#"
                 className="flex items-center"
                 onClick={(e) => {
-                  e.preventDefault();
                   setIsOpen(false);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  // If we're already on the home page, smooth scroll to top.
+                  // Otherwise, let the browser navigate to "/".
+                  if (typeof window !== "undefined" && window.location.pathname === "/") {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
                 }}
               >
                 <img
@@ -177,14 +256,8 @@ export default function Navigation() {
                     <a
                       href={link.href}
                       onClick={(e) => {
-                        if (link.href === "#") {
-                          e.preventDefault();
-                          setIsOpen(false);
-                          window.scrollTo({ top: 0, behavior: "smooth" });
-                        } else {
-                          setIsOpen(false);
-                          handleNavClick(e, link.href);
-                        }
+                        setIsOpen(false);
+                        handleNavClick(e, link.href);
                       }}
                       className="text-5xl font-serif text-background block py-1"
                     >
