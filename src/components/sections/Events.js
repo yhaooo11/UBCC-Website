@@ -1,17 +1,11 @@
-import eventsData from "@/data/events.json";
+import { getEvents } from "@/lib/notion";
 import Card from "../layout/Card";
 
-export default function Events() {
-  const events = eventsData.upcoming;
-  const pastEvents = eventsData.past;
+// Revalidate every hour (3600 seconds)
+export const revalidate = 3600;
 
-  // Hard-coded dummy array for 6 cards for now..
-  const dummyEvents = Array(6).fill({
-    title: "The Send Off",
-    description: "Kick off the new term with our first community mixer. Whether you're a seasoned lead climber or just bought your first pair of shoes, come meet your new belay partners.",
-    date: "Jan 6",
-    link: "https://www.instagram.com/"
-  });
+export default async function Events() {
+  const events = await getEvents();
 
   return (
     <section id="events" className="mt-30 px-6 md:px-0">
@@ -26,9 +20,9 @@ export default function Events() {
           DESKTOP: 3-column grid (md:grid-cols-3)
       */}
       <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-4 md:gap-y-8 md:overflow-visible mx-auto max-w-4xl">
-        {events.map((event, index) => (
+        {events.map((event) => (
           <div 
-            key={index} 
+            key={event.id} 
             className="min-w-[75vw] md:min-w-0 snap-center shrink-0"
           >
             <Card
