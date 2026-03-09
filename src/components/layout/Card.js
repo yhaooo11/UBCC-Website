@@ -1,4 +1,4 @@
-export default function Card({ title, description, date, link, imgUrl }) {
+export default function Card({ title, description, date, link, imgUrl, action }) {
     return (
         <div className="relative w-72 h-105 bg-[#FDFAEA] p-2 text-background flex flex-col">
             <img src="/stickers/tape3.png"
@@ -25,7 +25,7 @@ export default function Card({ title, description, date, link, imgUrl }) {
                                 target="_blank"
                                 className="font-pp-neue-montreal font-bold"
                             >
-                                RSVP
+                                {action || "RSVP"}
                             </a>
                         </button>
                     )}

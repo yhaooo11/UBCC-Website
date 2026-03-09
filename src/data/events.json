@@ -1,28 +1,30 @@
 {
   "upcoming": [
     {
-      "date": "Feb 6",
-      "time": "6:30-8:30pm",
-      "title": "Hive Night",
-      "description": "Join us for Hive Nights at Hive Vancouver from 6:30-8:30pm, and enjoy some well-deserved Earnest ice cream with fellow climbers afterwards! Only $16 with rentals included! P.S. don't forget to bring $15 cash for your UBCCC membership!",
-      "link": "https://docs.google.com/forms/d/e/1FAIpQLSdGPjKdjFPNNpF7mSjq65DoUO8CINSvLCStw9tnvT6hyLboug/viewform",
+      "date": "Mar 14",
+      "time": "4:00-6:00pm",
+      "title": "Approach Night",
+      "description": "ALERT ALERT APPROACH NIGHT🚨‼️ Join us for an evening at Approach Bouldering Gym on March 14 from 4:00-6:00pm. DISCOUNTED day passes for members are $20 including rentals. Sign up through the Google Form, no separate website signups.",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSdpCJEvaaSqVnm6DgpmMMZjYxB19x3eORKjL1DWlnAQSL4KgQ/viewform",
       "action": "RSVP",
       "imgUrl": "/IMG_9481.jpg"
     },
     {
-      "date": "Feb 13",
-      "time": "5:00-7:00pm",
-      "title": "Valentine's Event",
-      "description": "Celebrate Valentine's Day with our Climb & Craft social! Please note that all climbers must be belay certified to hit the wall, but anyone is welcome to join the crafting session! Members join for free, non-members can enter for a $5 fee.",
+      "date": "Mar 17",
+      "time": "7:00-9:00pm",
+      "title": "Progression Night",
+      "description": "Guess what? Join us for another prog night on Tuesday March 17th from 7-9pm for only $20 with rentals included, or for free if you're a member at PBG! If spots are sold out but you still wanna climb with us, you'll need to purchase a full price day pass ($26).",
       "link": "",
-      "imgUrl": "/IMG_3321.png"
+      "imgUrl": "/IMG_1212.jpg"
     },
     {
-      "date": "TBD",
+      "date": "Apr 3-6",
       "time": "TBD",
-      "title": "Jeopardy Night",
-      "description": "Chalk up your trivia skills for UBCCC Jeopardy night! It's time to stop thinking about your project and start thinking about your beta. Whether you're a seasoned lead climber or you just finished your first V0, this is your chance to show off your mental grip strength.",
-      "imgUrl": "/IMG_1212.jpg"
+      "title": "Skaha Bluffs Trip",
+      "description": "Hey UBCCC! We are hosting our FIRST trip of the year to Skaha Bluffs Provincial Park during Easter weekend! 🧗‍♀️ Please note sign up is CLOSED. If you have already signed up, please review the trip info document and don't forget to submit your payments.",
+      "link": "https://docs.google.com/document/d/1J1D_V06dSLt98kqmgGmay1rvthJtcaJ8Dbrn-aUkiyA/edit?tab=t.0",
+      "action": "Info Doc",
+      "imgUrl": "/IMG_1125.jpg"
     }
   ],
   "past": [
