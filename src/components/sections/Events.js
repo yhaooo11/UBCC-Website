@@ -31,6 +31,7 @@ export default async function Events() {
               date={event.date}
               link={event.link}
               imgUrl={event.imgUrl}
+              action={event.action}
             />
           </div>
         ))}
