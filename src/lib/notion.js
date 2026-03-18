@@ -1,5 +1,46 @@
 const NOTION_API_URL = "https://api.notion.com/v1";
 
+function getPlainText(property) {
+  if (!property) return "";
+
+  if (property.type === "title") {
+    return property.title?.map((item) => item.plain_text).join("") || "";
+  }
+
+  if (property.type === "rich_text") {
+    return property.rich_text?.map((item) => item.plain_text).join("") || "";
+  }
+
+  return "";
+}
+
+function getFileUrl(property) {
+  const file = property?.files?.[0];
+  if (!file) return "";
+
+  return file.file?.url || file.external?.url || "";
+}
+
+function formatEventDate(property) {
+  const start = property?.date?.start;
+  const end = property?.date?.end;
+
+  if (!start) return "";
+
+  const formatter = new Intl.DateTimeFormat("en-CA", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  const startText = formatter.format(new Date(start));
+
+  if (!end) return startText;
+
+  const endText = formatter.format(new Date(end));
+  return `${startText} -> ${endText}`;
+}
+
 export async function getEvents() {
   try {
     const token = process.env.NOTION_TOKEN;
@@ -20,7 +61,14 @@ export async function getEvents() {
         "Notion-Version": "2022-06-28",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        sorts: [
+          {
+            property: "Event Date",
+            direction: "ascending",
+          },
+        ],
+      }),
     });
 
     if (!response.ok) {
@@ -32,21 +80,15 @@ export async function getEvents() {
 
     return data.results.map((page) => {
       const properties = page.properties;
-      
-      let photoUrl = "";
-      if (properties.Photo?.files?.[0]) {
-        const file = properties.Photo.files[0];
-        photoUrl = file.file?.url || file.external?.url || "";
-      }
 
       return {
         id: page.id,
-        title: properties.Name?.title?.[0]?.plain_text || "",
-        description: properties.Description?.rich_text?.[0]?.plain_text || "",
-        link: properties["CTA (RSVP LINK)"]?.url || "",
-        imgUrl: photoUrl,
-        date: properties.Date?.rich_text?.[0]?.plain_text || 
-              properties.Date?.date?.start || "",
+        title: getPlainText(properties["Event Name"]),
+        description: getPlainText(properties["Event Description"]),
+        link: properties["Event Sign URL"]?.url || "",
+        imgUrl: getFileUrl(properties["Event Image"]),
+        date: formatEventDate(properties["Event Date"]),
+        action: getPlainText(properties["URL Title (default RSVP)"]) || "RSVP",
       };
     });
   } catch (error) {
