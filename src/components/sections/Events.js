@@ -5,7 +5,15 @@ import Card from "../layout/Card";
 export const revalidate = 3600;
 
 export default async function Events() {
-  const events = await getEvents();
+  let events = [];
+  let hasError = false;
+
+  try {
+    events = await getEvents();
+  } catch (error) {
+    hasError = true;
+    console.error("Failed to fetch events:", error);
+  }
 
   return (
     <section id="events" className="mt-30 px-6 md:px-0">
@@ -19,23 +27,33 @@ export default async function Events() {
       {/* MOBILE: Horizontal scroll (flex-nowrap + overflow-x-auto)
           DESKTOP: 3-column grid (md:grid-cols-3)
       */}
-      <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-4 md:gap-y-8 md:overflow-visible mx-auto max-w-4xl">
-        {events.map((event) => (
-          <div 
-            key={event.id} 
-            className="min-w-[75vw] md:min-w-0 snap-center shrink-0"
-          >
-            <Card
-              title={event.title}
-              description={event.description}
-              date={event.date}
-              link={event.link}
-              imgUrl={event.imgUrl}
-              action={event.action}
-            />
-          </div>
-        ))}
-      </div>
+      {hasError ? (
+        <div className="mx-auto max-w-4xl font-pp-neue-montreal text-lg">
+          Unable to load events right now.
+        </div>
+      ) : events.length === 0 ? (
+        <div className="mx-auto max-w-4xl font-pp-neue-montreal text-lg">
+          No upcoming events yet.
+        </div>
+      ) : (
+        <div className="mx-auto flex max-w-4xl gap-5 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-5 md:gap-y-8 md:overflow-visible">
+          {events.map((event) => (
+            <div
+              key={event.id}
+              className="min-w-[75vw] snap-center shrink-0 md:min-w-0"
+            >
+              <Card
+                title={event.title}
+                description={event.description}
+                date={event.date}
+                link={event.link}
+                imgUrl={event.imgUrl}
+                action={event.action}
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

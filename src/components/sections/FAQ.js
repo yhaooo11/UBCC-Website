@@ -16,7 +16,7 @@ export default function FAQ() {
 
       <div>
         {faqs.map((faq, index) => (
-          <div key={index} className="flex items-start">
+          <div key={faq.question} className="flex items-start">
             <div className="flex-1">
               <button
                 onClick={() => toggleFAQ(index)}

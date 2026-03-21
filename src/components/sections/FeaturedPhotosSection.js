@@ -1,9 +1,16 @@
+import Image from "next/image";
 import { getRecentDrivePhotos } from "@/lib/googleDrive";
 
 const DEFAULT_FOLDER_ID = "12ScVsTUDjaZ8K1cyYyLo8-e_WmX6EweB";
 
-function pickTapeSticker() {
-  return Math.random() < 0.4 ? "/stickers/tape3.png" : "/stickers/tape.png";
+function pickTapeSticker(seed) {
+  let hash = 0;
+
+  for (let index = 0; index < seed.length; index += 1) {
+    hash = (hash * 31 + seed.charCodeAt(index)) >>> 0;
+  }
+
+  return hash % 10 < 4 ? "/stickers/tape3.png" : "/stickers/tape.png";
 }
 
 export default async function FeaturedPhotosSection() {
@@ -39,8 +46,12 @@ export default async function FeaturedPhotosSection() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {photos.map((photo) => (
               <div key={photo.id} className="relative pt-3">
-                <img
-                  src={pickTapeSticker()}
+                <Image
+                  src={pickTapeSticker(photo.id)}
+                  alt=""
+                  aria-hidden="true"
+                  width={80}
+                  height={80}
                   className="pointer-events-none absolute top-[-25] left-1/2 z-20 w-20 -translate-x-1/2 rotate-180"
                 />
                 <a
@@ -49,12 +60,14 @@ export default async function FeaturedPhotosSection() {
                   rel="noreferrer"
                   className="block overflow-hidden"
                 >
-                  <img
+                  <Image
                     src={photo.thumbnailUrl}
                     alt={photo.name || "UBC Climbing Club featured photo"}
-                    className="h-40 md:h-54 w-full object-cover transition-transform duration-300 hover:scale-105"
-                    loading="lazy"
+                    width={800}
+                    height={800}
+                    unoptimized
                     referrerPolicy="no-referrer"
+                    className="h-40 md:h-54 w-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                 </a>
               </div>
