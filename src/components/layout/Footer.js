@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="w-full h-35 mt-25 text-background relative overflow-hidden">
@@ -12,12 +14,20 @@ export default function Footer() {
       <div className="flex justify-between items-center w-full h-24 bg-white absolute bottom-0 z-20 px-6 md:px-36 pt-2 pb-4">
         <a href="https://www.instagram.com/ubcclimbingclub/"
           target="_blank" rel="noopener noreferrer" >
-          <img src="/instagram-logo.svg" className="w-12" />
+          <Image
+            src="/instagram-logo.svg"
+            alt="Instagram"
+            width={48}
+            height={48}
+            className="w-12"
+          />
         </a>
 
-        <img
+        <Image
           src="/logo.png"
           alt="UBCCC logo"
+          width={112}
+          height={60}
           className="w-28"
         />
       </div>

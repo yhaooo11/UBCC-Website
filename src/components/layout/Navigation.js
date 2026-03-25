@@ -1,40 +1,52 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
+const NAV_HEIGHT = 120;
+const PAPER_BACKGROUND = {
+  backgroundImage: "url(/paper.png), url(/paper.png)",
+  backgroundRepeat: "repeat-x, repeat-x",
+  backgroundPosition: "0 0, 50px 0",
+  backgroundSize: "auto 100%",
+  backgroundColor: "transparent",
+};
+
+const navLinks = [
+  { href: "/#events", label: "Events" },
+  { href: "/#about", label: "About" },
+  { href: "/team", label: "Team" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "https://www.instagram.com/ubcclimbingclub/", label: "Instagram", external: true },
+];
+
+const mobileNavLinks = [
+  { href: "/", label: "home" },
+  { href: "/#events", label: "events" },
+  { href: "/#about", label: "about us" },
+  { href: "/team", label: "team" },
+  { href: "/#faq", label: "faq" },
+];
 
 export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // When landing on home with a hash (e.g. from /team via /#about), scroll to the section
-  useEffect(() => {
     if (pathname !== "/" || typeof window === "undefined") return;
+
     const hash = window.location.hash?.slice(1);
     if (!hash) return;
 
-    const navHeight = 120;
     const scrollToTarget = () => {
       const target = document.getElementById(hash);
-      if (target) {
-        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
-        window.scrollTo({ top: targetPosition, behavior: "smooth" });
-        return true;
-      }
-      return false;
+      if (!target) return false;
+
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT;
+      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+      return true;
     };
 
     let timeoutId;
@@ -45,64 +57,40 @@ export default function Navigation() {
         }
       });
     });
+
     return () => {
       cancelAnimationFrame(rafId);
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, [pathname]);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
+
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-  const navLinks = [
-    { href: "/#events", label: "Events" },
-    { href: "/#about", label: "About" },
-    { href: "/team", label: "Team" },
-    { href: "/#faq", label: "FAQ" },
-    { href: "https://www.instagram.com/ubcclimbingclub/", label: "Instagram", external: true },
-  ];
-
-  const mobileNavLinks = [
-    { href: "/", label: "home" },
-    { href: "/#events", label: "events" },
-    { href: "/#about", label: "about us" },
-    { href: "/team", label: "team" },
-    { href: "/#faq", label: "faq" },
-  ];
-
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (event, href) => {
     const isHashLink = href.startsWith("#") || href.startsWith("/#");
-    // Only handle internal anchor links (with optional leading "/")
-    if (isHashLink) {
-      // If we're not on the home page, allow normal navigation to "/#section"
-      if (typeof window !== "undefined" && window.location.pathname !== "/") {
-        return;
-      }
-      e.preventDefault();
-      const targetId = href.split("#")[1];
-      const targetElement = document.getElementById(targetId);
 
-      if (targetElement) {
-        // Get the nav bar height (h-20 = 80px + pb-4 = 16px = ~96px, adding extra padding)
-        const navHeight = 120;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+    if (!isHashLink) return;
+    if (typeof window !== "undefined" && window.location.pathname !== "/") return;
 
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth"
-        });
-      }
-    }
-    // External links will use default behavior
+    event.preventDefault();
+    const targetId = href.split("#")[1];
+    const targetElement = document.getElementById(targetId);
+
+    if (!targetElement) return;
+
+    const targetPosition =
+      targetElement.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -110,46 +98,38 @@ export default function Navigation() {
       <div className="hidden md:block">
         <nav
           className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-visible"
-          style={{
-            backgroundImage: 'url(/paper.png), url(/paper.png)',
-            backgroundRepeat: 'repeat-x, repeat-x',
-            backgroundPosition: '0 0, 50px 0', // The second layer is shifted 40px
-            backgroundSize: 'auto 100%',
-            backgroundColor: 'transparent'
-          }}
+          style={PAPER_BACKGROUND}
         >
-          <div className="absolute w-full h-1/2 bg-white"></div>
+          <div className="absolute w-full h-1/2 bg-white" />
           <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-4 relative z-10">
             <div className="flex items-center justify-between h-20">
-              {/* Logo/Brand */}
-              <a
+              <Link
                 href="/"
                 className="flex items-center"
-                onClick={(e) => {
-                  // If we're already on the home page, smooth scroll to top.
-                  // Otherwise, let the browser navigate to "/".
+                onClick={(event) => {
                   if (typeof window !== "undefined" && window.location.pathname === "/") {
-                    e.preventDefault();
+                    event.preventDefault();
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }
                 }}
               >
-                <img
+                <Image
                   src="/logo.png"
                   alt="UBCCC logo"
+                  width={112}
+                  height={60}
                   className="w-28"
                 />
-              </a>
+              </Link>
 
-              {/* Navigation Links */}
               <div className="flex items-center gap-8">
                 {navLinks.map((link) => {
-                  const linkClassName = "font-judson font-bold text-background text-xl transition-colors duration-300 relative group";
                   const underline = (
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#E4B834] transition-all duration-300 group-hover:w-full ${isScrolled ? "bg-[#E4B834]" : "bg-[#E4B834]"}`}
-                    />
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E4B834] transition-all duration-300 group-hover:w-full" />
                   );
+                  const className =
+                    "font-judson font-bold text-background text-xl transition-colors duration-300 relative group";
+
                   if (link.external) {
                     return (
                       <a
@@ -157,36 +137,24 @@ export default function Navigation() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={linkClassName}
+                        className={className}
                       >
                         {link.label}
                         {underline}
                       </a>
                     );
                   }
-                  if (link.href.startsWith("/")) {
-                    return (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        className={linkClassName}
-                      >
-                        {link.label}
-                        {underline}
-                      </Link>
-                    );
-                  }
+
                   return (
-                    <a
+                    <Link
                       key={link.href}
                       href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className={linkClassName}
+                      onClick={(event) => handleNavClick(event, link.href)}
+                      className={className}
                     >
                       {link.label}
                       {underline}
-                    </a>
+                    </Link>
                   );
                 })}
               </div>
@@ -195,48 +163,37 @@ export default function Navigation() {
         </nav>
       </div>
 
-
-
-
-
       <div className="md:hidden">
-        {/* Mobile Nav Bar */}
         <nav
           className="fixed top-0 left-0 right-0 h-25 z-50"
-          style={{
-            backgroundImage: 'url(/paper.png), url(/paper.png)',
-            backgroundRepeat: 'repeat-x, repeat-x',
-            backgroundPosition: '0 0, 50px 0',
-            backgroundSize: 'auto 100%',
-            backgroundColor: 'transparent'
-          }}
+          style={PAPER_BACKGROUND}
         >
-          <div className="absolute w-full h-1/2 bg-white"></div>
+          <div className="absolute w-full h-1/2 bg-white" />
           <div className="px-4 pb-4 relative z-10">
             <div className="flex items-center justify-between h-20">
-              <a
-                href="#"
+              <Link
+                href="/"
                 className="flex items-center"
-                onClick={(e) => {
+                onClick={(event) => {
                   setIsOpen(false);
-                  // If we're already on the home page, smooth scroll to top.
-                  // Otherwise, let the browser navigate to "/".
+
                   if (typeof window !== "undefined" && window.location.pathname === "/") {
-                    e.preventDefault();
+                    event.preventDefault();
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }
                 }}
               >
-                <img
+                <Image
                   src="/logo.png"
                   alt="UBCCC logo"
+                  width={104}
+                  height={56}
                   className="w-26"
                 />
-              </a>
+              </Link>
 
-              {/* Menu Button */}
               <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsOpen((current) => !current)}
                 className={`font-judson text-xl px-6 ${isOpen ? "text-gray-400" : "text-background"}`}
               >
                 menu
@@ -245,19 +202,17 @@ export default function Navigation() {
           </div>
         </nav>
 
-        {/* Full-screen Mobile Menu Overlay */}
         {isOpen && (
           <div className="fixed inset-0 z-40 bg-white flex flex-col pt-28 px-6">
-            {/* Navigation Links */}
             <nav className="flex-1">
               <ul className="space-y-2">
                 {mobileNavLinks.map((link) => (
                   <li key={link.href + link.label}>
                     <a
                       href={link.href}
-                      onClick={(e) => {
+                      onClick={(event) => {
                         setIsOpen(false);
-                        handleNavClick(e, link.href);
+                        handleNavClick(event, link.href);
                       }}
                       className="text-5xl font-serif text-background block py-1"
                     >
@@ -268,19 +223,26 @@ export default function Navigation() {
               </ul>
             </nav>
 
-            {/* Footer with Instagram and Logo */}
             <div className="flex justify-between items-center pb-8">
               <a
                 href="https://www.instagram.com/ubcclimbingclub/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src="/instagram-logo.svg" className="w-14" alt="Instagram" />
+                <Image
+                  src="/instagram-logo.svg"
+                  alt="Instagram"
+                  width={56}
+                  height={56}
+                  className="w-14"
+                />
               </a>
 
-              <img
+              <Image
                 src="/logo.png"
                 alt="UBCCC logo"
+                width={128}
+                height={68}
                 className="w-32"
               />
             </div>
