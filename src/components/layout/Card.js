@@ -87,7 +87,7 @@ export default function Card({
             )}
 
             {!link && (
-              <span className="text-sm font-pp-neue-montreal text-black/55">
+              <span className="inline-flex items-center rounded-md border border-transparent py-2 text-sm font-pp-neue-montreal text-black/55">
                 RSVP link coming soon
               </span>
             )}
