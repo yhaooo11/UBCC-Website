@@ -12,6 +12,7 @@ Each event card on the website is built from these Notion properties:
 - `Event Sign URL`
 - `URL Title (default RSVP)`
 - `Event Image`
+- `Status`
 
 If these property names are changed in Notion, the website may stop showing event info correctly.
 
@@ -27,6 +28,7 @@ If these property names are changed in Notion, the website may stop showing even
 - `Event Sign URL`: The signup or info link.
 - `URL Title (default RSVP)`: Optional button text like `Register`, `Sign Up`, or `More Info`.
 - `Event Image`: The main photo for the card.
+- `Status`: Mark this as `Past` if the event should appear in the previous sends section. If left blank or set to anything else, it will be treated as upcoming.
 
 ## What happens if something is left blank
 
@@ -53,6 +55,8 @@ That means:
 
 - earlier events appear first
 - later events appear after them
+- events with `Status = Past` appear in `previous sends...`
+- events without that value appear in `upcoming sends...`
 
 ## Safe editing rules
 
@@ -68,4 +72,3 @@ That means:
 - Link works
 - Button title is set if needed
 - Image is uploaded
-

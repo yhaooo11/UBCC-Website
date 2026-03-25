@@ -1,42 +1,30 @@
 import { getEvents } from "@/lib/notion";
 import Card from "../layout/Card";
+import EventCardsCarousel from "./EventCardsCarousel";
 
 // Revalidate every hour (3600 seconds)
 export const revalidate = 3600;
 
-export default async function Events() {
-  let events = [];
-  let hasError = false;
-
-  try {
-    events = await getEvents();
-  } catch (error) {
-    hasError = true;
-    console.error("Failed to fetch events:", error);
-  }
+function EventSection({ title, subtitle, emptyMessage, events, showAction = true }) {
+  const useCarousel = events.length > 3;
 
   return (
-    <section id="events" className="mt-30 px-6 md:px-0">
-      <div className="mx-auto max-w-4xl mb-12">
-        <h2 className="mb-3 text-5xl md:text-6xl font-serif">upcoming sends...</h2>
+    <div className={`mx-auto ${useCarousel ? "max-w-[58rem]" : "max-w-4xl"}`}>
+      <div className="mb-12">
+        <h2 className="mb-3 text-5xl md:text-6xl font-serif">{title}</h2>
         <div className="text-xl md:text-2xl font-pp-neue-montreal">
-          Checkout events below and sign up!
+          {subtitle}
         </div>
       </div>
 
-      {/* MOBILE: Horizontal scroll (flex-nowrap + overflow-x-auto)
-          DESKTOP: 3-column grid (md:grid-cols-3)
-      */}
-      {hasError ? (
-        <div className="mx-auto max-w-4xl font-pp-neue-montreal text-lg">
-          Unable to load events right now.
+      {events.length === 0 ? (
+        <div className="font-pp-neue-montreal text-lg">
+          {emptyMessage}
         </div>
-      ) : events.length === 0 ? (
-        <div className="mx-auto max-w-4xl font-pp-neue-montreal text-lg">
-          No upcoming events yet.
-        </div>
+      ) : useCarousel ? (
+        <EventCardsCarousel events={events} showAction={showAction} />
       ) : (
-        <div className="mx-auto flex max-w-4xl gap-5 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-5 md:gap-y-8 md:overflow-visible">
+        <div className="flex gap-5 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-5 md:gap-y-8 md:overflow-visible">
           {events.map((event) => (
             <div
               key={event.id}
@@ -49,9 +37,51 @@ export default async function Events() {
                 link={event.link}
                 imgUrl={event.imgUrl}
                 action={event.action}
+                showAction={showAction}
               />
             </div>
           ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default async function Events() {
+  let upcomingEvents = [];
+  let pastEvents = [];
+  let hasError = false;
+
+  try {
+    const events = await getEvents();
+    upcomingEvents = events.upcoming;
+    pastEvents = events.past;
+  } catch (error) {
+    hasError = true;
+    console.error("Failed to fetch events:", error);
+  }
+
+  return (
+    <section id="events" className="mt-30 px-6 md:px-0">
+      {hasError ? (
+        <div className="mx-auto max-w-4xl font-pp-neue-montreal text-lg">
+          Unable to load events right now.
+        </div>
+      ) : (
+        <div className="space-y-20">
+          <EventSection
+            title="upcoming sends..."
+            subtitle="Checkout events below and sign up!"
+            emptyMessage="No upcoming events yet."
+            events={upcomingEvents}
+          />
+          <EventSection
+            title="previous sends..."
+            subtitle="Take a look back at sends that already happened."
+            emptyMessage="No previous events yet."
+            events={pastEvents}
+            showAction={false}
+          />
         </div>
       )}
     </section>

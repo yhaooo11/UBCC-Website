@@ -4,7 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-export default function Card({ title, description, date, link, imgUrl, action }) {
+export default function Card({
+  title,
+  description,
+  date,
+  link,
+  imgUrl,
+  action,
+  showAction = true,
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const shouldClamp = description && description.length > 180;
 
@@ -65,24 +73,26 @@ export default function Card({ title, description, date, link, imgUrl, action })
           )}
         </div>
 
-        <div className="mt-auto flex items-end justify-between gap-4 border-t border-black/10 pt-4">
-          {link && (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-black bg-[#E4FF6C] px-5 py-2 text-sm font-bold font-pp-neue-montreal transition-transform duration-200 hover:-translate-y-0.5"
-            >
-              {action || "RSVP"}
-            </a>
-          )}
+        {showAction && (
+          <div className="mt-auto flex min-h-[4.5rem] items-end justify-between gap-4 border-t border-black/10 pt-4">
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-md border border-black bg-[#E4FF6C] px-5 py-2 text-sm font-bold font-pp-neue-montreal transition-transform duration-200 hover:-translate-y-0.5"
+              >
+                {action || "RSVP"}
+              </a>
+            )}
 
-          {!link && (
-            <span className="text-sm font-pp-neue-montreal text-black/55">
-              RSVP link coming soon
-            </span>
-          )}
-        </div>
+            {!link && (
+              <span className="text-sm font-pp-neue-montreal text-black/55">
+                RSVP link coming soon
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </article>
   );
