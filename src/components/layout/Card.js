@@ -28,7 +28,7 @@ export default function Card({
         aria-hidden="true"
         width={96}
         height={96}
-        className="absolute top-[-40] left-1/2 -translate-x-1/2 z-20 w-24 rotate-[-2deg]"
+        className="absolute -top-10 left-1/2 z-20 w-24 -translate-x-1/2 rotate-[-2deg]"
       />
       <Image
         src={imgUrl || "./IMG_9525.jpg"}

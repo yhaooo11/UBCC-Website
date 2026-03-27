@@ -23,7 +23,10 @@ export default function EventCardsCarousel({
           loop: false,
         }}
       >
-        <CarouselContent className="-ml-0 gap-5">
+        <CarouselContent
+          viewportClassName="-mt-10 pt-10"
+          className="-ml-0 gap-5"
+        >
           {events.map((event) => (
             <CarouselItem
               key={event.id}
