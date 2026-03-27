@@ -28,7 +28,7 @@ function formatEventDate(property) {
   if (!start) return "";
 
   const formatter = new Intl.DateTimeFormat("en-CA", {
-    month: "long",
+    month: "short",
     day: "numeric",
     year: "numeric",
   });
@@ -39,6 +39,24 @@ function formatEventDate(property) {
 
   const endText = formatter.format(new Date(end));
   return `${startText} -> ${endText}`;
+}
+
+function isPastEvent(property) {
+  if (!property) return false;
+
+  if (property.type === "select") {
+    return property.select?.name === "Past";
+  }
+
+  if (property.type === "status") {
+    return property.status?.name === "Past";
+  }
+
+  if (property.type === "rich_text") {
+    return getPlainText(property) === "Past";
+  }
+
+  return false;
 }
 
 export async function getEvents() {
@@ -77,8 +95,10 @@ export async function getEvents() {
 
   const data = await response.json();
 
-  return data.results.map((page) => {
+  const events = data.results.map((page) => {
     const properties = page.properties;
+    const isPast = isPastEvent(properties["Status"]);
+    const actionLabel = getPlainText(properties["URL Title (default RSVP)"]);
 
     return {
       id: page.id,
@@ -87,7 +107,13 @@ export async function getEvents() {
       link: properties["Event Sign URL"]?.url || "",
       imgUrl: getFileUrl(properties["Event Image"]),
       date: formatEventDate(properties["Event Date"]),
-      action: getPlainText(properties["URL Title (default RSVP)"]) || "RSVP",
+      action: actionLabel || (isPast ? "Photos Link" : "RSVP"),
+      isPast,
     };
   });
+
+  return {
+    upcoming: events.filter((event) => !event.isPast),
+    past: events.filter((event) => event.isPast),
+  };
 }

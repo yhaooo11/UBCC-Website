@@ -4,19 +4,31 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-export default function Card({ title, description, date, link, imgUrl, action }) {
+export default function Card({
+  title,
+  description,
+  date,
+  link,
+  imgUrl,
+  action,
+  showAction = true,
+  isPastEvent = false,
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const shouldClamp = description && description.length > 180;
+  const cardMinHeight = isPastEvent ? "min-h-[30rem]" : "min-h-[34rem]";
 
   return (
-    <article className="relative flex min-h-[34rem] w-72 flex-col border border-black/10 bg-[#FDFAEA] p-3 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-transform duration-200 hover:-translate-y-1">
+    <article
+      className={`relative flex w-72 flex-col border border-black/10 bg-[#FDFAEA] p-3 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-transform duration-200 hover:-translate-y-1 ${cardMinHeight}`}
+    >
       <Image
         src="/stickers/tape3.png"
         alt=""
         aria-hidden="true"
         width={96}
         height={96}
-        className="absolute top-[-40] left-1/2 -translate-x-1/2 z-20 w-24 rotate-[-2deg]"
+        className="absolute -top-10 left-1/2 z-20 w-24 -translate-x-1/2 rotate-[-2deg]"
       />
       <Image
         src={imgUrl || "./IMG_9525.jpg"}
@@ -58,31 +70,37 @@ export default function Card({ title, description, date, link, imgUrl, action })
                 </button>
               )}
             </div>
-          ) : (
+          ) : isPastEvent && !link ? (
+            <p className="text-sm leading-6 font-pp-neue-montreal text-black/55">
+              Photos coming soon!
+            </p>
+          ) : !isPastEvent ? (
             <p className="text-sm leading-6 font-pp-neue-montreal text-black/55">
               More event details coming soon.
             </p>
-          )}
+          ) : null}
         </div>
 
-        <div className="mt-auto flex items-end justify-between gap-4 border-t border-black/10 pt-4">
-          {link && (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-black bg-[#E4FF6C] px-5 py-2 text-sm font-bold font-pp-neue-montreal transition-transform duration-200 hover:-translate-y-0.5"
-            >
-              {action || "RSVP"}
-            </a>
-          )}
+        {showAction && (
+          <div className="mt-auto flex min-h-[4.5rem] items-end justify-between gap-4 border-t border-black/10 pt-4">
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-md border border-black bg-[#E4FF6C] px-5 py-2 text-sm font-bold font-pp-neue-montreal transition-transform duration-200 hover:-translate-y-0.5"
+              >
+                {action || "RSVP"}
+              </a>
+            )}
 
-          {!link && (
-            <span className="inline-flex items-center rounded-md border border-transparent py-2 text-sm font-pp-neue-montreal text-black/55">
-              RSVP link coming soon
-            </span>
-          )}
-        </div>
+            {!link && !isPastEvent && (
+              <span className="inline-flex items-center rounded-md border border-transparent py-2 text-sm font-pp-neue-montreal text-black/55">
+                RSVP link coming soon
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </article>
   );
