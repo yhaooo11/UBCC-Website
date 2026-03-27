@@ -9,9 +9,13 @@ import {
 } from "@/components/ui/carousel";
 import Card from "../layout/Card";
 
-export default function EventCardsCarousel({ events, showAction = true }) {
+export default function EventCardsCarousel({
+  events,
+  showAction = true,
+  isPastEvent = false,
+}) {
   return (
-    <div className="relative">
+    <div className="relative -mt-10 pt-10">
       <Carousel
         className="w-full"
         opts={{
@@ -33,6 +37,7 @@ export default function EventCardsCarousel({ events, showAction = true }) {
                 imgUrl={event.imgUrl}
                 action={event.action}
                 showAction={showAction}
+                isPastEvent={isPastEvent}
               />
             </CarouselItem>
           ))}

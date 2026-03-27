@@ -97,6 +97,8 @@ export async function getEvents() {
 
   const events = data.results.map((page) => {
     const properties = page.properties;
+    const isPast = isPastEvent(properties["Status"]);
+    const actionLabel = getPlainText(properties["URL Title (default RSVP)"]);
 
     return {
       id: page.id,
@@ -105,8 +107,8 @@ export async function getEvents() {
       link: properties["Event Sign URL"]?.url || "",
       imgUrl: getFileUrl(properties["Event Image"]),
       date: formatEventDate(properties["Event Date"]),
-      action: getPlainText(properties["URL Title (default RSVP)"]) || "RSVP",
-      isPast: isPastEvent(properties["Status"]),
+      action: actionLabel || (isPast ? "Photos Link" : "RSVP"),
+      isPast,
     };
   });
 

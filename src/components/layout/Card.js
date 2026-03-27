@@ -12,12 +12,16 @@ export default function Card({
   imgUrl,
   action,
   showAction = true,
+  isPastEvent = false,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const shouldClamp = description && description.length > 180;
+  const cardMinHeight = isPastEvent ? "min-h-[30rem]" : "min-h-[34rem]";
 
   return (
-    <article className="relative flex min-h-[34rem] w-72 flex-col border border-black/10 bg-[#FDFAEA] p-3 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-transform duration-200 hover:-translate-y-1">
+    <article
+      className={`relative flex w-72 flex-col border border-black/10 bg-[#FDFAEA] p-3 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-transform duration-200 hover:-translate-y-1 ${cardMinHeight}`}
+    >
       <Image
         src="/stickers/tape3.png"
         alt=""
@@ -66,11 +70,15 @@ export default function Card({
                 </button>
               )}
             </div>
-          ) : (
+          ) : isPastEvent && !link ? (
+            <p className="text-sm leading-6 font-pp-neue-montreal text-black/55">
+              Photos coming soon!
+            </p>
+          ) : !isPastEvent ? (
             <p className="text-sm leading-6 font-pp-neue-montreal text-black/55">
               More event details coming soon.
             </p>
-          )}
+          ) : null}
         </div>
 
         {showAction && (
@@ -86,7 +94,7 @@ export default function Card({
               </a>
             )}
 
-            {!link && (
+            {!link && !isPastEvent && (
               <span className="inline-flex items-center rounded-md border border-transparent py-2 text-sm font-pp-neue-montreal text-black/55">
                 RSVP link coming soon
               </span>

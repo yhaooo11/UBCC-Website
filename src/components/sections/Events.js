@@ -5,7 +5,14 @@ import EventCardsCarousel from "./EventCardsCarousel";
 // Revalidate every hour (3600 seconds)
 export const revalidate = 3600;
 
-function EventSection({ title, subtitle, emptyMessage, events, showAction = true }) {
+function EventSection({
+  title,
+  subtitle,
+  emptyMessage,
+  events,
+  showAction = true,
+  isPastEvent = false,
+}) {
   const useCarousel = events.length > 3;
 
   return (
@@ -22,9 +29,13 @@ function EventSection({ title, subtitle, emptyMessage, events, showAction = true
           {emptyMessage}
         </div>
       ) : useCarousel ? (
-        <EventCardsCarousel events={events} showAction={showAction} />
+        <EventCardsCarousel
+          events={events}
+          showAction={showAction}
+          isPastEvent={isPastEvent}
+        />
       ) : (
-        <div className="flex gap-5 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-3 md:gap-x-5 md:gap-y-8 md:overflow-visible">
+        <div className="-mt-10 flex gap-5 overflow-x-auto pt-10 pb-8 snap-x snap-mandatory no-scrollbar md:mt-0 md:grid md:grid-cols-3 md:gap-x-5 md:gap-y-8 md:pt-0 md:overflow-visible">
           {events.map((event) => (
             <div
               key={event.id}
@@ -38,6 +49,7 @@ function EventSection({ title, subtitle, emptyMessage, events, showAction = true
                 imgUrl={event.imgUrl}
                 action={event.action}
                 showAction={showAction}
+                isPastEvent={isPastEvent}
               />
             </div>
           ))}
@@ -80,7 +92,7 @@ export default async function Events() {
             subtitle="Take a look back at sends that already happened."
             emptyMessage="No previous events yet."
             events={pastEvents}
-            showAction={false}
+            isPastEvent
           />
         </div>
       )}

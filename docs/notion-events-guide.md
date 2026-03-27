@@ -25,18 +25,18 @@ If these property names are changed in Notion, the website may stop showing even
 - `Event Name`: The event title shown on the card.
 - `Event Description`: The main event details. This can be short or long. On the website, long text can now be expanded with a "Show more" button.
 - `Event Date`: The date shown on the card.
-- `Event Sign URL`: The signup or info link.
-- `URL Title (default RSVP)`: Optional button text like `Register`, `Sign Up`, or `More Info`.
+- `Event Sign URL`: The signup, info, or photo link.
+- `URL Title (default RSVP)`: Optional button text like `Register`, `Sign Up`, `More Info`, or `Photo Gallery`.
 - `Event Image`: The main photo for the card.
 - `Status`: Mark this as `Past` if the event should appear in the previous sends section. If left blank or set to anything else, it will be treated as upcoming.
 
 ## What happens if something is left blank
 
 - No `Event Name`: The card may look incomplete.
-- No `Event Description`: The site will show `More event details coming soon.`
+- No `Event Description`: Upcoming events will show `More event details coming soon.` Past events will leave that area blank.
 - No `Event Date`: The site will show `Date TBA`.
-- No `Event Sign URL`: No button will appear. The card will show `RSVP link coming soon`.
-- No `URL Title (default RSVP)`: If there is a link, the button will say `RSVP`.
+- No `Event Sign URL`: Upcoming cards will show `RSVP link coming soon`. Past cards will simply omit the link button.
+- No `URL Title (default RSVP)`: If there is a link, upcoming buttons will say `RSVP` and past buttons will say `Photos Link`.
 - No `Event Image`: The site uses a fallback image.
 
 ## Best practices
