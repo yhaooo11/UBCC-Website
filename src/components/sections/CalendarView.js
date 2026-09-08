@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -85,7 +86,39 @@ export default function CalendarView({ events: rawEvents }) {
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_20rem]">
-      <div className="border border-black/10 bg-[#FDFAEA] p-4 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:p-6">
+      <div className="relative border border-black/10 bg-[#FDFAEA] p-4 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:p-6">
+        <Image
+          src="/stickers/tape.png"
+          alt=""
+          aria-hidden="true"
+          width={96}
+          height={96}
+          className="pointer-events-none absolute -top-8 -left-8 z-20 w-24 rotate-[-8deg]"
+        />
+        <Image
+          src="/stickers/tape2.png"
+          alt=""
+          aria-hidden="true"
+          width={72}
+          height={72}
+          className="pointer-events-none absolute -top-6 -right-6 z-20 w-16 rotate-[15deg]"
+        />
+        <Image
+          src="/stickers/tape3.png"
+          alt=""
+          aria-hidden="true"
+          width={80}
+          height={80}
+          className="pointer-events-none absolute -bottom-8 -left-8 z-20 w-20 rotate-[100deg]"
+        />
+        <Image
+          src="/stickers/tape.png"
+          alt=""
+          aria-hidden="true"
+          width={96}
+          height={96}
+          className="pointer-events-none absolute -bottom-8 -right-8 z-20 w-24 rotate-[172deg]"
+        />
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-serif md:text-3xl">{MONTH_FORMATTER.format(monthDate)}</h2>
           <div className="flex items-center gap-2 font-pp-neue-montreal">
@@ -185,7 +218,39 @@ export default function CalendarView({ events: rawEvents }) {
         )}
       </div>
 
-      <div className="border border-black/10 bg-[#FDFAEA] p-4 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:p-6">
+      <div className="relative border border-black/10 bg-[#FDFAEA] p-4 text-background shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:p-6">
+        <Image
+          src="/stickers/tape.png"
+          alt=""
+          aria-hidden="true"
+          width={72}
+          height={72}
+          className="pointer-events-none absolute -top-6 -left-6 z-20 w-16 rotate-[-15deg]"
+        />
+        <Image
+          src="/stickers/tape2.png"
+          alt=""
+          aria-hidden="true"
+          width={80}
+          height={80}
+          className="pointer-events-none absolute -top-8 -right-8 z-20 w-20 rotate-[12deg]"
+        />
+        <Image
+          src="/stickers/tape3.png"
+          alt=""
+          aria-hidden="true"
+          width={80}
+          height={80}
+          className="pointer-events-none absolute -bottom-8 -left-8 z-20 w-20 rotate-[-100deg]"
+        />
+        <Image
+          src="/stickers/tape3.png"
+          alt=""
+          aria-hidden="true"
+          width={80}
+          height={80}
+          className="pointer-events-none absolute -bottom-8 -right-8 z-20 w-20 rotate-[95deg]"
+        />
         <h2 className="mb-4 text-2xl font-serif">Upcoming</h2>
 
         {events.length === 0 ? (
