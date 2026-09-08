@@ -17,6 +17,7 @@ const PAPER_BACKGROUND = {
 const navLinks = [
   { href: "/#events", label: "Events" },
   { href: "/#about", label: "About" },
+  { href: "/calendar", label: "Calendar" },
   { href: "/team", label: "Team" },
   { href: "/#faq", label: "FAQ" },
   { href: "https://www.instagram.com/ubcclimbingclub/", label: "Instagram", external: true },
@@ -26,6 +27,7 @@ const mobileNavLinks = [
   { href: "/", label: "home" },
   { href: "/#events", label: "events" },
   { href: "/#about", label: "about us" },
+  { href: "/calendar", label: "calendar" },
   { href: "/team", label: "team" },
   { href: "/#faq", label: "faq" },
 ];
