@@ -17,6 +17,11 @@ const PILL_COLORS = [
   "bg-[color:var(--color-old-rose)] text-background",
 ];
 
+function parseLocalDate(value) {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
 function dateKey(date) {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }
@@ -41,7 +46,12 @@ function buildGrid(monthDate) {
   });
 }
 
-export default function CalendarView({ events }) {
+export default function CalendarView({ events: rawEvents }) {
+  const events = useMemo(
+    () => rawEvents.map((event) => ({ ...event, date: parseLocalDate(event.date) })),
+    [rawEvents]
+  );
+
   const initialMonth = events.length > 0 ? startOfMonth(events[0].date) : startOfMonth(new Date());
   const [monthDate, setMonthDate] = useState(initialMonth);
   const [selectedDay, setSelectedDay] = useState(null);
