@@ -52,11 +52,13 @@ function parseSheetDate(value) {
 
   const [day, month, yearRaw] = parts.map((part) => Number(part));
   if (!day || !month || !yearRaw) return null;
+  if (month < 1 || month > 12 || day < 1 || day > 31) return null;
 
   const year = yearRaw < 100 ? 2000 + yearRaw : yearRaw;
-  const date = new Date(year, month - 1, day);
 
-  return Number.isNaN(date.getTime()) ? null : date;
+  // Keep as a plain date string (no Date object) so it survives the
+  // server -> client serialization boundary without being shifted to UTC.
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
 
 export async function getSheetEvents() {
@@ -78,5 +80,5 @@ export async function getSheetEvents() {
       return { date, title: title.trim() };
     })
     .filter(Boolean)
-    .sort((a, b) => a.date - b.date);
+    .sort((a, b) => a.date.localeCompare(b.date));
 }
