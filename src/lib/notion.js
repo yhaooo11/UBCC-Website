@@ -95,22 +95,26 @@ export async function getEvents() {
 
   const data = await response.json();
 
-  const events = data.results.map((page) => {
-    const properties = page.properties;
-    const isPast = isPastEvent(properties["Status"]);
-    const actionLabel = getPlainText(properties["URL Title (default RSVP)"]);
+  const events = data.results
+    .map((page) => {
+      const properties = page.properties;
+      const isPast = isPastEvent(properties["Status"]);
+      const actionLabel = getPlainText(properties["URL Title (default RSVP)"]);
 
-    return {
-      id: page.id,
-      title: getPlainText(properties["Event Name"]),
-      description: getPlainText(properties["Event Description"]),
-      link: properties["Event Sign URL"]?.url || "",
-      imgUrl: getFileUrl(properties["Event Image"]),
-      date: formatEventDate(properties["Event Date"]),
-      action: actionLabel || (isPast ? "Photos Link" : "RSVP"),
-      isPast,
-    };
-  });
+      return {
+        id: page.id,
+        title: getPlainText(properties["Event Name"]),
+        description: getPlainText(properties["Event Description"]),
+        link: properties["Event Sign URL"]?.url || "",
+        imgUrl: getFileUrl(properties["Event Image"]),
+        date: formatEventDate(properties["Event Date"]),
+        action: actionLabel || (isPast ? "Photos Link" : "RSVP"),
+        isPast,
+      };
+    })
+    // Skip empty/placeholder rows in the Notion database (e.g. a row with
+    // no Event Name filled in yet) so they don't render as blank cards.
+    .filter((event) => event.title.trim() !== "");
 
   return {
     upcoming: events.filter((event) => !event.isPast),
