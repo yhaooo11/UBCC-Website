@@ -33,11 +33,22 @@ function formatEventDate(property) {
     year: "numeric",
   });
 
-  const startText = formatter.format(new Date(start));
+  // Notion returns dates as ISO strings (e.g. "2025-09-11" or
+  // "2025-09-11T23:00:00.000-07:00"). The "YYYY-MM-DD" part is already the
+  // calendar day Notion shows, so pull it out directly and build a local
+  // Date from those parts instead of going through `new Date(start)`, which
+  // reinterprets the string as a UTC instant and can shift it to the
+  // adjacent day once the server renders it back out in its own timezone.
+  const toLocalDate = (value) => {
+    const [year, month, day] = value.slice(0, 10).split("-").map(Number);
+    return new Date(year, month - 1, day);
+  };
+
+  const startText = formatter.format(toLocalDate(start));
 
   if (!end) return startText;
 
-  const endText = formatter.format(new Date(end));
+  const endText = formatter.format(toLocalDate(end));
   return `${startText} -> ${endText}`;
 }
 
