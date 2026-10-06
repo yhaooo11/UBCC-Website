@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getRecentDrivePhotos } from "@/lib/googleDrive";
+import FadeIn from "@/components/ui/FadeIn";
 
 const DEFAULT_FOLDER_ID = "12ScVsTUDjaZ8K1cyYyLo8-e_WmX6EweB";
 
@@ -29,9 +30,9 @@ export default async function FeaturedPhotosSection() {
 
   return (
     <section id="featured-photos" className="mt-30 px-6 md:px-0">
-      <div className="mx-auto max-w-4xl mb-12">
+      <FadeIn className="mx-auto max-w-4xl mb-12">
         <h2 className="mb-3 text-5xl md:text-6xl font-serif">featured photos.</h2>
-      </div>
+      </FadeIn>
 
       {hasError ? (
         <div className="mx-auto max-w-4xl font-pp-neue-montreal text-lg">
@@ -44,8 +45,8 @@ export default async function FeaturedPhotosSection() {
       ) : (
         <div className="mx-auto max-w-4xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {photos.map((photo) => (
-              <div key={photo.id} className="relative pt-3">
+            {photos.map((photo, index) => (
+              <FadeIn key={photo.id} delay={index * 70} className="relative pt-3">
                 <Image
                   src={pickTapeSticker(photo.id)}
                   alt=""
@@ -70,11 +71,11 @@ export default async function FeaturedPhotosSection() {
                     className="h-40 md:h-54 w-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                 </a>
-              </div>
+              </FadeIn>
             ))}
           </div>
 
-          <div className="mt-6 font-pp-neue-montreal text-lg md:text-xl">
+          <FadeIn delay={160} className="mt-6 font-pp-neue-montreal text-lg md:text-xl">
             <a
               href={`https://drive.google.com/drive/folders/${folderId}`}
               target="_blank"
@@ -83,7 +84,7 @@ export default async function FeaturedPhotosSection() {
             >
               See all featured photos
             </a>
-          </div>
+          </FadeIn>
         </div>
       )}
     </section>

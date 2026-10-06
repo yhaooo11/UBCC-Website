@@ -1,6 +1,7 @@
 import { getEvents } from "@/lib/notion";
 import Card from "../layout/Card";
 import EventCardsCarousel from "./EventCardsCarousel";
+import FadeIn from "@/components/ui/FadeIn";
 
 // Revalidate every hour (3600 seconds)
 export const revalidate = 3600;
@@ -16,7 +17,7 @@ function EventSection({
   const useCarousel = events.length > 3;
 
   return (
-    <div className={`mx-auto ${useCarousel ? "max-w-[58rem]" : "max-w-4xl"}`}>
+    <FadeIn className={`mx-auto ${useCarousel ? "max-w-[58rem]" : "max-w-4xl"}`}>
       <div className="mb-12">
         <h2 className="mb-3 text-5xl md:text-6xl font-serif">{title}</h2>
         <div className="text-xl md:text-2xl font-pp-neue-montreal">
@@ -55,7 +56,7 @@ function EventSection({
           ))}
         </div>
       )}
-    </div>
+    </FadeIn>
   );
 }
 
