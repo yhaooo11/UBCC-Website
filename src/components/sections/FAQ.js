@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import faqs from "@/data/faqs.json";
+import FadeIn from "@/components/ui/FadeIn";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -12,11 +13,13 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="mx-auto max-w-4xl mt-30 px-4 md:px-0">
-      <h2 className="mb-6 font-serif text-6xl">before your send...</h2>
+      <FadeIn as="h2" className="mb-6 font-serif text-6xl">
+        before your send...
+      </FadeIn>
 
       <div>
         {faqs.map((faq, index) => (
-          <div key={faq.question} className="flex items-start">
+          <FadeIn key={faq.question} delay={index * 80} className="flex items-start">
             <div className="flex-1">
               <button
                 onClick={() => toggleFAQ(index)}
@@ -39,7 +42,7 @@ export default function FAQ() {
                 )}
               </button>
             </div>
-          </div>
+          </FadeIn>
         ))}
       </div>
     </section>

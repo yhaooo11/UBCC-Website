@@ -1,11 +1,14 @@
 import Image from "next/image";
+import FadeIn from "@/components/ui/FadeIn";
 
 export default function AboutSection() {
   return (
     <section id="about" className="mx-auto max-w-4xl w-full mt-10 md:mt-25 px-4 md:px-0">
-      <h2 className="mb-6 text-5xl md:text-7xl font-serif">our roots.</h2>
+      <FadeIn as="h2" className="mb-6 text-5xl md:text-7xl font-serif">
+        our roots.
+      </FadeIn>
 
-      <div className="w-full md:w-1/2 mb-12 space-y-4">
+      <FadeIn delay={120} className="w-full md:w-1/2 mb-12 space-y-4">
         <p>
           UBC Climbing Club is dedicated to fostering community, growth, and
           adventure through rock climbing. We bridge the gap between the gym and
@@ -26,9 +29,9 @@ export default function AboutSection() {
           </a>
           {" "}to learn more or just chat!
         </p>
-      </div>
+      </FadeIn>
 
-      <div className="relative block md:hidden space-y-4">
+      <FadeIn delay={180} className="relative block md:hidden space-y-4">
         <div className="relative px-4">
           <Image
             src="/IMG_3748.jpg"
@@ -56,9 +59,9 @@ export default function AboutSection() {
             className="absolute -top-7 -right-5 z-20 w-24 rotate-12"
           />
         </div>
-      </div>
+      </FadeIn>
 
-      <div className="hidden md:block relative min-h-[350px]">
+      <FadeIn delay={180} className="hidden md:block relative min-h-[350px]">
         <div className="absolute w-1/3 -top-5 z-25">
           <Image
             src="/IMG_3120.jpg"
@@ -170,7 +173,7 @@ export default function AboutSection() {
             className="absolute -top-14 -right-15 z-20 w-30 rotate-265"
           />
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 }

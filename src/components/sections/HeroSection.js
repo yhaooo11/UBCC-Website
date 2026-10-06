@@ -1,10 +1,11 @@
 import Image from "next/image";
+import FadeIn from "@/components/ui/FadeIn";
 
 export default function HeroSection() {
   return (
     <>
       <section className="hidden md:block mx-auto max-w-4xl text-9xl">
-        <div className="h-[10rem] mb-10 flex content-between justify-between font-judson text-[10rem]">
+        <FadeIn className="h-[10rem] mb-10 flex content-between justify-between font-judson text-[10rem]">
           UBC
           <div className="relative w-[60%]">
             <Image
@@ -40,9 +41,12 @@ export default function HeroSection() {
               className="absolute top-25 -left-9 z-20 w-24"
             />
           </div>
-        </div>
+        </FadeIn>
 
-        <div className="h-[10rem] mb-10 flex content-between justify-between font-pp-editorial-new italic">
+        <FadeIn
+          delay={120}
+          className="h-[10rem] mb-10 flex content-between justify-between font-pp-editorial-new italic"
+        >
           <div className="relative w-[30%]">
             <Image
               src="/IMG_1125.jpg"
@@ -78,9 +82,12 @@ export default function HeroSection() {
             />
           </div>
           Climbing
-        </div>
+        </FadeIn>
 
-        <div className="h-[10rem] flex content-between justify-between text-[10rem] font-pp-neue-montreal">
+        <FadeIn
+          delay={240}
+          className="h-[10rem] flex content-between justify-between text-[10rem] font-pp-neue-montreal"
+        >
           Club
           <div className="relative w-[60%]">
             <Image
@@ -116,11 +123,11 @@ export default function HeroSection() {
               className="absolute top-30 -right-10 z-20 w-18"
             />
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       <section className="mt-36 px-3 md:hidden">
-        <div className="flex justify-end relative w-full pr-4">
+        <FadeIn className="flex justify-end relative w-full pr-4">
           <Image
             src="/IMG_1126.jpg"
             alt="Climbing club activity"
@@ -153,13 +160,19 @@ export default function HeroSection() {
             height={96}
             className="absolute top-25 left-15 z-20 w-24"
           />
-        </div>
+        </FadeIn>
 
-        <h1 className="font-judson text-[7rem]">UBC</h1>
-        <h1 className="font-pp-editorial-new italic text-[6rem]">Climbing</h1>
-        <h1 className="font-pp-neue-montreal text-[7rem]">Club</h1>
+        <FadeIn delay={80} as="h1" className="font-judson text-[7rem]">
+          UBC
+        </FadeIn>
+        <FadeIn delay={160} as="h1" className="font-pp-editorial-new italic text-[6rem]">
+          Climbing
+        </FadeIn>
+        <FadeIn delay={240} as="h1" className="font-pp-neue-montreal text-[7rem]">
+          Club
+        </FadeIn>
 
-        <div className="relative w-[80%]">
+        <FadeIn delay={320} className="relative w-[80%]">
           <Image
             src="/IMG_9525.jpg"
             alt="Climbing club activity"
@@ -192,7 +205,7 @@ export default function HeroSection() {
             height={72}
             className="absolute -bottom-10 -right-10 z-20 w-18"
           />
-        </div>
+        </FadeIn>
       </section>
     </>
   );
