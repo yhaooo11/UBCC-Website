@@ -53,8 +53,7 @@ export default function CalendarView({ events: rawEvents }) {
     [rawEvents]
   );
 
-  const initialMonth = events.length > 0 ? startOfMonth(events[0].date) : startOfMonth(new Date());
-  const [monthDate, setMonthDate] = useState(initialMonth);
+  const [monthDate, setMonthDate] = useState(() => startOfMonth(new Date()));
   const [selectedDay, setSelectedDay] = useState(null);
 
   const today = useMemo(() => new Date(), []);
